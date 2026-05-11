@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Printaria® — Customize Your World | Custom T-Shirts, Hoodies, Mugs & More</title>
+<meta name="description" content="Printaria: India's premium custom merchandise platform. Design your own t-shirts, hoodies, mugs, bottles & decorative items. Bulk corporate orders welcome."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Mono:wght@400;700&family=Syne:wght@400;500;700;800&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link rel="stylesheet" href="styles.css"/>
+</head>
+<body>
+<!-- Progress Bar -->
+<div id="progress"></div>
+<!-- Custom Cursor -->
+<div id="cursor"></div>
+<!-- Grain Overlay -->
+<div class="grain"></div>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-half loader-top"></div>
+  <div class="loader-half loader-bot"></div>
+  <div style="z-index:1;display:flex;flex-direction:column;align-items:center;">
+    <img src="assets/images/logo.png" alt="Printaria" style="width:80px;height:80px;object-fit:contain;margin-bottom:16px;"/>
+    <div id="loader-text"><span id="typewriter"></span><span class="blink">_</span></div>
+  </div>
+</div>
+
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#products" onclick="closeMenu()">Shop</a>
+  <a href="#customizer" onclick="closeMenu()">Customize</a>
+  <a href="#corporate" onclick="closeMenu()">Corporate</a>
+  <a href="#community" onclick="closeMenu()">About</a>
+  <a href="#" onclick="closeMenu(); toggleCart()" style="color:var(--tertiary)">Cart</a>
+</div>
+
+<!-- Navigation -->
+<nav class="nav" id="mainNav">
+  <div class="nav-logo glitch" style="display:flex;align-items:center;gap:10px;"><img src="assets/images/logo.png" alt="P" style="width:36px;height:36px;object-fit:contain;"/>PRINTARIA®</div>
+  <div class="nav-links">
+    <a href="#products" class="active">Shop</a>
+    <a href="#customizer">Customize</a>
+    <a href="#corporate">Corporate</a>
+    <a href="#community">About</a>
+  </div>
+  <div class="nav-actions">
+    <span class="material-symbols-outlined nav-icon">search</span>
+    <span class="material-symbols-outlined nav-icon">person</span>
+    <div class="btn-cart" id="cartToggle" onclick="toggleCart()"><span class="material-symbols-outlined" style="font-size:18px;vertical-align:middle;">shopping_cart</span> Cart (<span id="cartCount">0</span>)</div>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+</nav>
+
+<main id="contentWrap" style="opacity:0">
+
+<!-- Hero -->
+<section class="hero" id="hero">
+  <div class="hero-bg">
+    <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8r-423zgGSi6m7sR6WgWvujL5JdY1YcFNZBsNfAG_kb9koIbj3rPqjA9mz0rjQ1s33KPeolgbgW32PefDSGZnz2Ibg8zi0d1QupenhyDRsuYdYdJtVbpeb7bI9htCsVO85Ibfw-n1LbAywIkCtJd9_emjvQMxs15skxV2t-GR33kH_vPVKoaVBfYJezrD_HFlIT4_peB419S0vNFbZi6MpqN6E2wE8hC2ZwPPnfY2Vpp2Dxqh7oWneNF9aHBDMIi651MEwEXhm9k" alt="Printaria Hero Background"/>
+  </div>
+  <div class="hero-content">
+    <h1 class="hero-title" id="heroTitle">
+      <span class="line1">CUSTOMIZE</span>
+      <span class="line2">YOUR WORLD</span>
+      <span class="line3">YOUR WAY.</span>
+    </h1>
+    <p class="hero-sub">T-SHIRTS · HOODIES · MUGS · BOTTLES · DÉCOR — ALL MADE YOUR WAY</p>
+    <button class="btn-hero" id="btnHero" onclick="document.getElementById('customizer').scrollIntoView({behavior:'smooth'})">START CREATING</button>
+  </div>
+  <div class="hero-badge" style="background:transparent;border:none;width:auto;height:auto;"><img src="assets/images/logo.png" alt="Printaria Logo" style="width:96px;height:96px;object-fit:contain;filter:drop-shadow(0 0 12px rgba(207,188,255,0.5));"/></div>
+  <div class="ticker" style="position:absolute;bottom:0;width:100%;z-index:2;">
+    <div class="ticker-inner">
+      <span>T-SHIRTS ·</span><span>HOODIES ·</span><span>MUGS ·</span><span>BOTTLES ·</span><span>CAPS ·</span><span>TOTE BAGS ·</span><span>PHONE CASES ·</span><span>DECORATIVE ITEMS ·</span>
+      <span>T-SHIRTS ·</span><span>HOODIES ·</span><span>MUGS ·</span><span>BOTTLES ·</span><span>CAPS ·</span><span>TOTE BAGS ·</span><span>PHONE CASES ·</span><span>DECORATIVE ITEMS ·</span>
+    </div>
+  </div>
+</section>
+
+<!-- Products -->
+<section class="section" id="products">
+  <div class="products-wrap">
+    <div class="products-sidebar"><h2>Trending Now</h2></div>
+    <div class="product-grid">
+
+      <div class="product-card reveal" data-name="Custom Graphic Tee" data-price="499" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuC-Sww4LI1lsUKTeye-fYH2CuEZ_lRjqmM828pgq_fdnbJiFG93xKpt0LTKRUM-l3clFrtpt0f0I6EQw1CdIme2f5I2DTl3L5IX3spLqQZmssxabtSjYs4OAhBmrlhMTgKveFkSmSLyQM6cxTW4CxEcQwqSLgU2nTs-SEDnuwpyD8ybVtMCZsm2SR8TuXjjohP9yqWsjWB4tP8yTTESZ0ERclc_Zz47ZCy5GsutxNi6s1Te_qS4BjOikQ2KMju-3xLXFwPOv6XVWuw">
+        <span class="badge badge-drop">DROP #001</span>
+        <div class="product-img">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-Sww4LI1lsUKTeye-fYH2CuEZ_lRjqmM828pgq_fdnbJiFG93xKpt0LTKRUM-l3clFrtpt0f0I6EQw1CdIme2f5I2DTl3L5IX3spLqQZmssxabtSjYs4OAhBmrlhMTgKveFkSmSLyQM6cxTW4CxEcQwqSLgU2nTs-SEDnuwpyD8ybVtMCZsm2SR8TuXjjohP9yqWsjWB4tP8yTTESZ0ERclc_Zz47ZCy5GsutxNi6s1Te_qS4BjOikQ2KMju-3xLXFwPOv6XVWuw" alt="Custom Graphic Tee" loading="lazy"/>
+          <div class="product-overlay"><button class="btn-quick btn-add-cart">ADD TO CART</button></div>
+        </div>
+        <div class="product-info">
+          <div><p class="product-meta">PREMIUM COTTON</p><h3 class="product-name">CUSTOM GRAPHIC TEE</h3></div>
+          <span class="product-price">₹499</span>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-name="Custom Hoodie" data-price="1299" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuCZi09nOdJlE66qD-6GzTrpZqeaVwAwFWGmVoNd2EOA5CgmthUetbX0ZoF6Jy72g6n9bOZ8A5KBjjdfrHThDmd0C0vSFYF-zM-IJKWKJ9r2QhsA7VoaDQhPOPCQDlPJv-gRJMzN_jR8osu5lkuQ6o12Rox-8y_AmTA0do44Y8255lSeftkRdPRSDpz5Wd3XGVE1-NhoD8vjY2wjoffHoMGe1ndTy77Sej3nNN6Od7wZKhRFGKlmM2QXfFfFHO6cLhkvrleReKvJR6o">
+        <span class="badge badge-best">BESTSELLER</span>
+        <div class="product-img">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZi09nOdJlE66qD-6GzTrpZqeaVwAwFWGmVoNd2EOA5CgmthUetbX0ZoF6Jy72g6n9bOZ8A5KBjjdfrHThDmd0C0vSFYF-zM-IJKWKJ9r2QhsA7VoaDQhPOPCQDlPJv-gRJMzN_jR8osu5lkuQ6o12Rox-8y_AmTA0do44Y8255lSeftkRdPRSDpz5Wd3XGVE1-NhoD8vjY2wjoffHoMGe1ndTy77Sej3nNN6Od7wZKhRFGKlmM2QXfFfFHO6cLhkvrleReKvJR6o" alt="Custom Oversized Hoodie" loading="lazy"/>
+          <div class="product-overlay"><button class="btn-quick btn-add-cart">ADD TO CART</button></div>
+        </div>
+        <div class="product-info">
+          <div><p class="product-meta">BOX OVERSIZED</p><h3 class="product-name">CUSTOM HOODIE</h3></div>
+          <span class="product-price">₹1,299</span>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-name="Custom Bottle" data-price="599" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuDiPn69zOme6vfYa43u9X5JsLB7ijBjRUFTdu7J0U67rs0jAbXbxg1CzktzTxpda_CWWrRu-xs2nSTyHh4-52Y22R1PA3o4THE-I26gpJGru9If5hUbGQGwD-jOq3d-YQer1_ZIlRvSLGZGBicRcePZfrowbAUyFxstApDcQSIck3uaXDvEQ1J84cgb7JpIsW8CCeF7tlyYd5G5ESqDo9CvGQfbdUVmdOt6ad3ftCrGFPjAy7zNNeA8Z9LvJJbuN16u1gvMDkwpmys">
+        <span class="badge badge-new">NEW</span>
+        <div class="product-img">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiPn69zOme6vfYa43u9X5JsLB7ijBjRUFTdu7J0U67rs0jAbXbxg1CzktzTxpda_CWWrRu-xs2nSTyHh4-52Y22R1PA3o4THE-I26gpJGru9If5hUbGQGwD-jOq3d-YQer1_ZIlRvSLGZGBicRcePZfrowbAUyFxstApDcQSIck3uaXDvEQ1J84cgb7JpIsW8CCeF7tlyYd5G5ESqDo9CvGQfbdUVmdOt6ad3ftCrGFPjAy7zNNeA8Z9LvJJbuN16u1gvMDkwpmys" alt="Custom Steel Bottle" loading="lazy"/>
+          <div class="product-overlay"><button class="btn-quick btn-add-cart">ADD TO CART</button></div>
+        </div>
+        <div class="product-info">
+          <div><p class="product-meta">MATTE STEEL</p><h3 class="product-name">CUSTOM BOTTLE</h3></div>
+          <span class="product-price">₹599</span>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-name="Custom Tote Bag" data-price="299" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuBBeiB8vK6edZdcV9-WoWsimr5Hq0rIfc_Xc8BZ7QOZIclsk3gpAb_TmUqlecDWXuZeDLRQkdLp7pyiOkbR41-63aVnxajqQOIiwH3S5cxcDgZhFxyS26FI7kihMGmMqOFU7pebJV6KSYHa2An1vz_BTuir5GADYvYDbCkgu-embZKu7H86VjLzhahR5u_fak6sMlGvZXSm4tJ-N99ZxA-A4iilSkfk0_UZFAHc5D7gnmhD3FafxwDKsM-aKA-OYXPy8jubdcw92as">
+        <div class="product-img">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBeiB8vK6edZdcV9-WoWsimr5Hq0rIfc_Xc8BZ7QOZIclsk3gpAb_TmUqlecDWXuZeDLRQkdLp7pyiOkbR41-63aVnxajqQOIiwH3S5cxcDgZhFxyS26FI7kihMGmMqOFU7pebJV6KSYHa2An1vz_BTuir5GADYvYDbCkgu-embZKu7H86VjLzhahR5u_fak6sMlGvZXSm4tJ-N99ZxA-A4iilSkfk0_UZFAHc5D7gnmhD3FafxwDKsM-aKA-OYXPy8jubdcw92as" alt="Custom Canvas Tote" loading="lazy"/>
+          <div class="product-overlay"><button class="btn-quick btn-add-cart">ADD TO CART</button></div>
+        </div>
+        <div class="product-info">
+          <div><p class="product-meta">CANVAS 12OZ</p><h3 class="product-name">CUSTOM TOTE BAG</h3></div>
+          <span class="product-price">₹299</span>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-name="Custom Cap" data-price="399" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuAHYWIR6N0nakCxB_XyoQHRdz8gcP4iVtWDYZMqq3pGZ6IRBxLXkRoRx5-ABBucauNXNYOrSB_demwrRJBNK_DtIS3Ppr9YIQq6krMZgpZcdh2nhhrvtcQNWeKgGJ0EPLGno5ZArpsbk8EFvfq5tVeZUTBehjMSnNhCtc2L-Od9nHmi7Ck7CQTXvNE9mTpbZczOwyJNiRTaU6k47lxC6-GeNEdEuJiv2ystsGoI-Ccfrki5Ls_leUCM5BpsqZX_V5K6sBXOJQlVsp0">
+        <div class="product-img">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHYWIR6N0nakCxB_XyoQHRdz8gcP4iVtWDYZMqq3pGZ6IRBxLXkRoRx5-ABBucauNXNYOrSB_demwrRJBNK_DtIS3Ppr9YIQq6krMZgpZcdh2nhhrvtcQNWeKgGJ0EPLGno5ZArpsbk8EFvfq5tVeZUTBehjMSnNhCtc2L-Od9nHmi7Ck7CQTXvNE9mTpbZczOwyJNiRTaU6k47lxC6-GeNEdEuJiv2ystsGoI-Ccfrki5Ls_leUCM5BpsqZX_V5K6sBXOJQlVsp0" alt="Custom Cap" loading="lazy"/>
+          <div class="product-overlay"><button class="btn-quick btn-add-cart">ADD TO CART</button></div>
+        </div>
+        <div class="product-info">
+          <div><p class="product-meta">5-PANEL CAP</p><h3 class="product-name">CUSTOM CAP</h3></div>
+          <span class="product-price">₹399</span>
+        </div>
+      </div>
+
+      <div class="product-card reveal" data-name="Custom Phone Case" data-price="449" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuAkgtAO7vlZZvU_0MLQCCDAMfn4nj6YmUQNORyyI8MWGTsu2j2vRwEL3j-s1g8mrn42ngIVLraejVP_ZNdGksiRpgxYEFpA1QxVd5esu4ZnyhjU5N6L0zhNdR8_UTv22rp1lzc7QZ-5OELfuJPhxIXwJy1-JG6cF_qSG0XfG1Q9dws9may97mVDaaUputvJVFvqKp5ghOKryvX-nUXrl_Q_FUzbjfukr9EzK6ntgx9a_nktOCED0_Acc3-ocseewhqUn_aFRqToGYw">
+        <div class="product-img">
+          <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkgtAO7vlZZvU_0MLQCCDAMfn4nj6YmUQNORyyI8MWGTsu2j2vRwEL3j-s1g8mrn42ngIVLraejVP_ZNdGksiRpgxYEFpA1QxVd5esu4ZnyhjU5N6L0zhNdR8_UTv22rp1lzc7QZ-5OELfuJPhxIXwJy1-JG6cF_qSG0XfG1Q9dws9may97mVDaaUputvJVFvqKp5ghOKryvX-nUXrl_Q_FUzbjfukr9EzK6ntgx9a_nktOCED0_Acc3-ocseewhqUn_aFRqToGYw" alt="Custom Phone Case" loading="lazy"/>
+          <div class="product-overlay"><button class="btn-quick btn-add-cart">ADD TO CART</button></div>
+        </div>
+        <div class="product-info">
+          <div><p class="product-meta">IMPACT PRO</p><h3 class="product-name">CUSTOM PHONE CASE</h3></div>
+          <span class="product-price">₹449</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Social Proof -->
+<div class="ticker ticker-gold">
+  <div class="ticker-inner">
+    <span>10K+ Happy Customers</span><span>·</span><span>Free Design Tools</span><span>·</span><span>Ships in 5 Days</span><span>·</span><span>100% Customizable</span><span>·</span>
+    <span>10K+ Happy Customers</span><span>·</span><span>Free Design Tools</span><span>·</span><span>Ships in 5 Days</span><span>·</span><span>100% Customizable</span><span>·</span>
+  </div>
+</div>
+
+<!-- How It Works -->
+<section class="how-section" id="howItWorks">
+  <div class="how-bg"></div>
+  <div style="position:relative;z-index:2;">
+    <h2 class="section-title reveal reveal-flip">HOW IT WORKS</h2>
+    <div class="steps-grid">
+      <div class="step-card step-1 reveal">
+        <span class="step-num">01</span>
+        <h3 class="step-title" style="color:var(--primary)">CHOOSE & DESIGN</h3>
+        <p class="step-text">Pick any product — tee, hoodie, mug, bottle, or décor. Upload your own artwork or use our free design studio.</p>
+        <div class="step-bar"><div class="step-bar-fill"></div></div>
+      </div>
+      <div class="step-card step-2 reveal">
+        <span class="step-num">02</span>
+        <h3 class="step-title">PREVIEW & ORDER</h3>
+        <p class="step-text">See a real-time preview on your product. Choose sizes, colors, and quantities. We use premium eco-friendly inks.</p>
+        <div class="step-bar"><div class="step-bar-fill"></div></div>
+      </div>
+      <div class="step-card step-3 reveal">
+        <span class="step-num">03</span>
+        <h3 class="step-title">WE DELIVER</h3>
+        <p class="step-text">We print, pack, and ship across India within 5 days. Track your order in real-time. 100% satisfaction guaranteed.</p>
+        <div class="step-bar"><div class="step-bar-fill"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Customizer -->
+<section class="section customizer" id="customizer">
+  <div class="cust-preview reveal reveal-flip">
+    <div class="cust-preview-glow"></div>
+    <div class="cust-frame">
+      <div class="cust-canvas" id="custCanvas">
+        <img src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-Sww4LI1lsUKTeye-fYH2CuEZ_lRjqmM828pgq_fdnbJiFG93xKpt0LTKRUM-l3clFrtpt0f0I6EQw1CdIme2f5I2DTl3L5IX3spLqQZmssxabtSjYs4OAhBmrlhMTgKveFkSmSLyQM6cxTW4CxEcQwqSLgU2nTs-SEDnuwpyD8ybVtMCZsm2SR8TuXjjohP9yqWsjWB4tP8yTTESZ0ERclc_Zz47ZCy5GsutxNi6s1Te_qS4BjOikQ2KMju-3xLXFwPOv6XVWuw" alt="Preview"/>
+        <div class="cust-text-overlay" id="custPreview">YOUR VIBE</div>
+      </div>
+      <div class="cust-controls">
+        <input class="cust-input" id="custInput" type="text" placeholder="TYPE YOUR TEXT HERE..."/>
+        <div class="cust-swatches">
+          <div class="swatch active" style="background:#27272a" data-color="#27272a"></div>
+          <div class="swatch" style="background:#450a0a" data-color="#450a0a"></div>
+          <div class="swatch" style="background:#1e1b4b" data-color="#1e1b4b"></div>
+          <div class="swatch" style="background:#064e3b" data-color="#064e3b"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="cust-info reveal">
+    <h2 class="cust-info h2">REAL-TIME<br/>DESIGN STUDIO</h2>
+    <p style="color:var(--text-dim);margin-top:16px;">See your design come to life instantly. Upload art, pick colors, add text — preview it all before you order.</p>
+    <div class="cust-tags">
+      <span class="cust-tag cust-tag-1">UPLOAD ART</span>
+      <span class="cust-tag cust-tag-2">PICK COLORS</span>
+      <span class="cust-tag cust-tag-3">ADD TEXT</span>
+      <span class="cust-tag cust-tag-4">INSTANT PREVIEW</span>
+    </div>
+    <button class="btn-create" onclick="document.getElementById('custInput').focus(); document.getElementById('custInput').scrollIntoView({behavior:'smooth',block:'center'})">OPEN THE CREATOR <span class="material-symbols-outlined arrow">east</span></button>
+  </div>
+</section>
+
+<!-- Corporate -->
+<section class="section corporate" id="corporate">
+  <div class="corp-grid">
+    <div class="corp-img reveal">
+      <img src="assets/images/corporate.png" alt="Corporate Bulk Orders"/>
+    </div>
+    <div class="reveal">
+      <p class="section-label">FOR BUSINESSES</p>
+      <h2 class="section-title" style="font-size:clamp(36px,5vw,56px)">CORPORATE<br/>BULK ORDERS</h2>
+      <p style="color:var(--text-dim);margin-top:16px;">We help companies create custom branded merchandise — from team uniforms to event goodies, conference swag to client gifts. Minimum 50 pieces.</p>
+      <div class="corp-features">
+        <div class="corp-feat"><h4>BULK PRICING</h4><p>Special rates for 50+ pieces</p></div>
+        <div class="corp-feat"><h4>BRAND MATCH</h4><p>Pantone color matching</p></div>
+        <div class="corp-feat"><h4>FAST DELIVERY</h4><p>7-day turnaround</p></div>
+        <div class="corp-feat"><h4>DEDICATED MGR</h4><p>Personal account manager</p></div>
+      </div>
+      <button class="btn-corp">GET A QUOTE →</button>
+    </div>
+  </div>
+</section>
+
+<!-- Categories -->
+<section class="section" style="border-top:2px solid var(--outline-dim);border-bottom:2px solid var(--outline-dim);overflow:hidden;">
+  <p class="section-label">BY CATEGORY</p>
+  <div class="cat-scroll">
+    <a href="#" class="cat-link">#APPAREL</a>
+    <a href="#" class="cat-link">#DRINKWARE</a>
+    <a href="#" class="cat-link">#ACCESSORIES</a>
+    <a href="#" class="cat-link">#LIFESTYLE</a>
+    <a href="#" class="cat-link">#DÉCOR</a>
+  </div>
+</section>
+
+<!-- Testimonials -->
+<section class="section testimonials-section" id="testimonials">
+  <h2 class="section-title reveal reveal-flip" style="text-align:center;">WHAT THEY SAY</h2>
+  <div class="testimonial-grid">
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"Ordered custom hoodies for my entire college gang — the print quality blew our minds! Delivered in just 4 days. Printaria is legit the best."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">A</div>
+        <div><strong>Arjun Mehta</strong><br/><span>Mumbai, Maharashtra</span></div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"We use Printaria for all our company merch — bottles, caps, tees. The bulk pricing is great and the quality is consistent every single time."</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">P</div>
+        <div><strong>Priya Sharma</strong><br/><span>HR Lead, TechNova Pvt. Ltd.</span></div>
+      </div>
+    </div>
+    <div class="testimonial-card reveal">
+      <div class="testimonial-stars">★★★★★</div>
+      <p class="testimonial-text">"The design studio is so easy to use! I created a custom mug for my mom's birthday in 5 minutes. She absolutely loved it. 10/10 recommend!"</p>
+      <div class="testimonial-author">
+        <div class="testimonial-avatar">R</div>
+        <div><strong>Riya Patel</strong><br/><span>Pune, Maharashtra</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Community -->
+<section class="section" id="community">
+  <div class="community-header">
+    <h2 class="section-title reveal reveal-flip">THE CULTURE<br/>IS WEARING IT</h2>
+    <a href="#" class="community-link reveal">@PRINTARIA_OFFICIAL</a>
+  </div>
+  <div class="ugc-grid">
+    <div class="ugc-item reveal"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHb_AfD7E1qQMQ0VDC3RAarVfAShG0Mx5oxKs_UVMLPBazkbRHgJ7lcLmxoJlovVsJ7vt2IDdM4DtzbwgpUqXIIBB4hrvpt27TThK7K61W5sa7sbQKwIC7CcI1_-5GruD_rcy6Z94U58wIBLoE7SqTIn1dDOD7-w_sst7EtdL7b4XGzXZHh44gVrtbvKolaMQ3kSa4ZnTCcYsv9cEeR3t90pL_MAzI9T2pyE73GtEbYMPCNgcgwBUnYMWlWGN80mDFJe9Y9AoBiAI" alt="Community" loading="lazy"/></div>
+    <div class="ugc-item reveal"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm5i5GVerZI4LoGPfKV6MshM5MyaiFARfmWeVA9cvw7ZND5MqL8oNUE24Wv_QlEbHpfgeuZ7NNpOfP9wUA1mtoyPhoWWQ6gkfBoYXuBYvEmZdx6eY-net6Abqq395GaweIwDg_vgKwjDFdcyL-OzzgiLBKteTjX2uMCH9j3f5SoIvlwlgzxlhxWkfuL0kd59yZUmbaNnhl6hqgsX9zuIR5oKOcVRyaVsLCk9RqVcInz3lzUwRodiSYbU75_n-zX0fOxLQpne2ut1A" alt="Community" loading="lazy"/></div>
+    <div class="ugc-item reveal"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRI6D1DuvSMNksRa01g2JRSvXgB592aPtFNbY5Sx1jOoMCstFNydr2qHK2tyBmD6ntHMaFxs4yncX1gINWqKjORSITJ-CbNgv59-4wNkVQ6kwsctJi0Kw1z9MycrIJLjIrSN9-9lDmYzSMsAgFB0g0zn_dgmBxZTReFqDvqjngQh8CBKOi9qQCNi70M_hGceCPs7QkqidwskqFLR-dnUUwqSjrYloZzGxXoKs6jRizhmpnFkgGc3RAY6ScqEad7FSAR-IRPRoZIMQ" alt="Community" loading="lazy"/></div>
+    <div class="ugc-item reveal"><img src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnrOAqTjWcS1WgGdD3i6YDX1z-LIKFulomTYfGFEJxT-HLWhck4xbmFLJT_C5_KmgC2w7Hyn4-0RshzHTLY8JTYQveWi4_P3rqx0BTUuREESrPxFU1OlpMvgapSVRQSvybPvpiKBOMDE9EfyvbxKtrOyMihBxiZCV7ovlK0_LCp_XVllNTt1eRCLjX0mRx78hrfBlhE8oa9LQ469OQEZVAGUfSqVU33rew8TCa1qku9D2sC7Sw6TLVGxmUVdFLIqO0v7hMB58CzfE" alt="Community" loading="lazy"/></div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="section cta-section reveal">
+  <h2>JOIN THE<br/>PRINTARIA MOVEMENT</h2>
+  <p style="color:var(--text-dim);max-width:500px;margin:0 auto;">Get exclusive drops, design inspiration, and early access to new products. No spam — just creativity.</p>
+  <div class="newsletter-form">
+    <input type="email" placeholder="ENTER YOUR EMAIL"/>
+    <button>SUBMIT →</button>
+  </div>
+</section>
+
+</main>
+
+<!-- Cart Drawer -->
+<div class="cart-overlay" id="cartOverlay" onclick="toggleCart()"></div>
+<div class="cart-drawer" id="cartDrawer">
+  <div class="cart-header">
+    <h3>YOUR CART</h3>
+    <button class="cart-close" onclick="toggleCart()"><span class="material-symbols-outlined">close</span></button>
+  </div>
+  <div class="cart-items" id="cartItems">
+    <div class="cart-empty" id="cartEmpty">
+      <span class="material-symbols-outlined" style="font-size:64px;color:var(--outline);margin-bottom:16px;">shopping_cart</span>
+      <p style="color:var(--text-dim);">Your cart is empty</p>
+      <p style="font-family:var(--font-mono);font-size:12px;color:var(--outline);margin-top:8px;">ADD ITEMS TO GET STARTED</p>
+    </div>
+  </div>
+  <div class="cart-footer" id="cartFooter" style="display:none;">
+    <div class="cart-total">
+      <span>TOTAL</span>
+      <span id="cartTotal">₹0</span>
+    </div>
+    <button class="btn-checkout" onclick="alert('Checkout coming soon! 🚀')">CHECKOUT →</button>
+  </div>
+</div>
+
+<!-- Mobile Bottom Nav -->
+<div class="mobile-nav">
+  <div class="mobile-nav-inner">
+    <button class="material-symbols-outlined">home</button>
+    <button class="material-symbols-outlined">search</button>
+    <button class="material-symbols-outlined fab">add</button>
+    <button class="material-symbols-outlined">favorite</button>
+    <button class="material-symbols-outlined">shopping_cart</button>
+  </div>
+</div>
+
+<!-- Footer -->
+<footer class="footer">
+  <div class="footer-brand" style="display:flex;align-items:center;gap:24px;"><img src="assets/images/logo.png" alt="Printaria" style="width:80px;height:80px;object-fit:contain;opacity:.6;"/>PRINTARIA®</div>
+  <div class="footer-grid">
+    <div class="footer-mission">
+      <h4 style="color:var(--primary)">Our Mission</h4>
+      <p>We customize your day-to-day products — from t-shirts to mugs, bottles to decorative items. Your design, your rules.</p>
+      <div style="margin-top:20px;padding:16px;border:1px solid var(--outline-dim);">
+        <h4 style="color:var(--tertiary);font-family:var(--font-mono);font-size:12px;margin-bottom:12px;">FOUNDERS</h4>
+        <p style="font-family:var(--font-mono);font-size:13px;color:var(--text);margin-bottom:8px;">
+          <strong>Sagar Ahirrao</strong><br/>
+          <a href="tel:+917558697260" style="color:var(--text-dim);">📞 +91 7558697260</a>
+        </p>
+        <p style="font-family:var(--font-mono);font-size:13px;color:var(--text);">
+          <strong>Kush Agarwal</strong><br/>
+          <a href="tel:+918421708222" style="color:var(--text-dim);">📞 +91 8421708222</a>
+        </p>
+      </div>
+      <div class="footer-socials" style="margin-top:16px;">
+        <a href="#" class="material-symbols-outlined">share</a>
+        <a href="#" class="material-symbols-outlined">public</a>
+        <a href="#" class="material-symbols-outlined">mail</a>
+      </div>
+    </div>
+    <div>
+      <h4>Shop</h4>
+      <ul><li><a href="#">All Products</a></li><li><a href="#">T-Shirts</a></li><li><a href="#">Hoodies</a></li><li><a href="#">Mugs & Bottles</a></li><li><a href="#">Accessories</a></li></ul>
+    </div>
+    <div>
+      <h4>Support</h4>
+      <ul><li><a href="#">Shipping</a></li><li><a href="#">Size Guide</a></li><li><a href="#">Contact Us</a></li><li><a href="#">FAQ</a></li><li><a href="#">Returns</a></li></ul>
+    </div>
+    <div>
+      <h4>Newsletter</h4>
+      <div class="newsletter-form">
+        <input type="email" placeholder="ENTER EMAIL"/>
+        <button>SUBMIT →</button>
+      </div>
+      <p style="font-family:var(--font-mono);font-size:10px;color:var(--outline);margin-top:12px;text-transform:uppercase;">No spam. Just creativity.</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 PRINTARIA®. CUSTOMIZE YOUR WORLD.</span>
+    <div style="display:flex;gap:24px;"><a href="#">Privacy</a><a href="#">Terms</a></div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
