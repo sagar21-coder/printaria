@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;family=Syne:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#594400",
+                        "surface-container-highest": "#36343a",
+                        "surface-tint": "#cfbcff",
+                        "on-surface-variant": "#cbc4d2",
+                        "on-error-container": "#ffdad6",
+                        "primary": "#cfbcff",
+                        "surface-bright": "#3b383e",
+                        "outline": "#948e9c",
+                        "surface": "#141218",
+                        "tertiary-fixed-dim": "#e7c365",
+                        "secondary": "#cdc0e9",
+                        "surface-container-lowest": "#0f0d13",
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#6750a4",
+                        "secondary-fixed-dim": "#cdc0e9",
+                        "on-secondary-fixed": "#1f1635",
+                        "inverse-surface": "#e6e0e9",
+                        "on-primary-container": "#e0d2ff",
+                        "on-primary-fixed-variant": "#4f378a",
+                        "tertiary-container": "#c9a74d",
+                        "on-secondary": "#342b4b",
+                        "on-secondary-container": "#bfb2da",
+                        "on-secondary-fixed-variant": "#4b4263",
+                        "surface-dim": "#141218",
+                        "surface-container-low": "#1d1b20",
+                        "secondary-container": "#4d4465",
+                        "on-tertiary": "#3e2e00",
+                        "on-surface": "#e6e0e9",
+                        "tertiary": "#e7c365",
+                        "on-tertiary-container": "#503d00",
+                        "surface-variant": "#36343a",
+                        "on-primary-fixed": "#22005d",
+                        "on-background": "#e6e0e9",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#241a00",
+                        "background": "#141218",
+                        "surface-container": "#211f24",
+                        "secondary-fixed": "#e9ddff",
+                        "outline-variant": "#494551",
+                        "on-primary": "#381e72",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#cfbcff",
+                        "primary-container": "#6750a4",
+                        "inverse-on-surface": "#322f35",
+                        "primary-fixed": "#e9ddff",
+                        "surface-container-high": "#2b292f",
+                        "tertiary-fixed": "#ffdf93"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "stack-lg": "64px",
+                        "margin-mobile": "16px",
+                        "stack-md": "24px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Bebas Neue"],
+                        "label-mono-bold": ["Space Mono"],
+                        "body-md": ["Syne"],
+                        "display-xl": ["Bebas Neue"],
+                        "display-lg-mobile": ["Bebas Neue"],
+                        "display-lg": ["Bebas Neue"],
+                        "body-lg": ["Syne"],
+                        "label-mono": ["Space Mono"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["40px", {"lineHeight": "40px", "fontWeight": "400"}],
+                        "label-mono-bold": ["14px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                        "display-xl": ["120px", {"lineHeight": "100px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "display-lg-mobile": ["48px", {"lineHeight": "44px", "fontWeight": "400"}],
+                        "display-lg": ["80px", {"lineHeight": "72px", "fontWeight": "400"}],
+                        "body-lg": ["20px", {"lineHeight": "1.4", "fontWeight": "700"}],
+                        "label-mono": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>.material-symbols-outlined {
+    font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24
+    }
+.grain-overlay {
+    background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuA4seqw-oOl6ZVvlUkDkY-Fz7b8sE02wbLMffguhdOuLyf-_1VK0lOsylHg4sCjVeNf7zLbxj7z3Q4iNHzl37b1iTw76eegvzpIV9bokOITlBIdluW6DdcGayqVOpwDbLiKfUWRM_0zo_dz_usg2mmXqr6dFIwU2fIRatL7AoP6BxEHsAL-WoeOwhoRH5Cv7Ul28yMKvMLZ5AtK2O1GkpITHvU65wIq8lZE3_UU6IBP6ow2ZyE_s7nytfp1ielg8cYyMZb77Rb1760);
+    pointer-events: none;
+    opacity: 0.1
+    }
+.custom-crosshair {
+    cursor: crosshair
+    }
+.glitch-hover:hover {
+    animation: glitch 0.2s infinite
+    }
+@keyframes glitch {
+    0% {
+        transform: translate(0);
+        } 20% {
+        transform: translate(-2px, 2px);
+        } 40% {
+        transform: translate(-2px, -2px);
+        } 60% {
+        transform: translate(2px, 2px);
+        } 80% {
+        transform: translate(2px, -2px);
+        } 100% {
+        transform: translate(0);
+        }
+    }
+.ticker-scroll {
+    display: flex;
+    white-space: nowrap;
+    animation: scroll 20s linear infinite
+    }
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+        } 100% {
+        transform: translateX(-50%);
+        }
+    }
+.rotated-rules {
+    transform: rotate(-3deg)
+    }
+.clip-diag {
+    clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%)
+    }</style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-tertiary selection:text-on-tertiary">
+<div class="fixed inset-0 grain-overlay z-[100]"></div>
+<!-- TopNavBar -->
+<nav class="bg-surface dark:bg-surface border-b-2 border-tertiary dark:border-tertiary shadow-[4px_4px_0px_0px_rgba(205,192,233,1)] flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 w-full sticky top-0 z-50 backdrop-blur-md">
+<div class="font-headline-md text-headline-md tracking-tighter uppercase text-primary italic">PRINTARIA®</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-tertiary font-label-mono-bold underline decoration-2 underline-offset-8" href="#">Shop</a>
+<a class="text-on-surface font-label-mono uppercase hover:bg-tertiary hover:text-on-tertiary transition-all duration-75 px-2 py-1" href="#">Drops</a>
+<a class="text-on-surface font-label-mono uppercase hover:bg-tertiary hover:text-on-tertiary transition-all duration-75 px-2 py-1" href="#">Studio</a>
+<a class="text-on-surface font-label-mono uppercase hover:bg-tertiary hover:text-on-tertiary transition-all duration-75 px-2 py-1" href="#">Sell</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary text-2xl" data-icon="account_circle">account_circle</button>
+<button class="material-symbols-outlined text-primary text-2xl" data-icon="notifications">notifications</button>
+<div class="bg-tertiary text-on-tertiary px-4 py-1 font-label-mono-bold active:translate-x-1 active:translate-y-1 active:shadow-none transition-transform shadow-[4px_4px_0px_0px_rgba(205,192,233,1)] cursor-pointer">
+                Cart (0)
+            </div>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex flex-col justify-center items-center overflow-hidden pt-10">
+<div class="absolute inset-0 z-0 opacity-40">
+<img alt="Collage Background" class="w-full h-full object-cover grayscale brightness-50" data-alt="A gritty, urban collage background for a streetwear brand, featuring high-contrast black and white photography of city skylines, abstract spray-paint textures, and xeroxed flyer aesthetics. The lighting is harsh and dramatic, creating a dark, underground subculture mood with vibrant acid yellow accents flickering through the static." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8r-423zgGSi6m7sR6WgWvujL5JdY1YcFNZBsNfAG_kb9koIbj3rPqjA9mz0rjQ1s33KPeolgbgW32PefDSGZnz2Ibg8zi0d1QupenhyDRsuYdYdJtVbpeb7bI9htCsVO85Ibfw-n1LbAywIkCtJd9_emjvQMxs15skxV2t-GR33kH_vPVKoaVBfYJezrD_HFlIT4_peB419S0vNFbZi6MpqN6E2wE8hC2ZwPPnfY2Vpp2Dxqh7oWneNF9aHBDMIi651MEwEXhm9k"/>
+</div>
+<div class="relative z-10 text-center px-margin-mobile flex flex-col items-center">
+<h1 class="font-display-xl text-display-lg-mobile md:text-display-xl flex flex-col gap-0 leading-none">
+<span class="block -rotate-1 self-start">YOUR DESIGN</span>
+<span class="block rotated-rules bg-tertiary text-on-tertiary px-8 py-2 border-4 border-black mx-auto my-4 w-fit">YOUR RULES</span>
+<span class="block rotate-1 self-end">WEAR IT.</span>
+</h1>
+<div class="mt-stack-lg group">
+<button class="glitch-hover bg-on-background text-background font-headline-md text-headline-md px-12 py-6 border-2 border-white shadow-[8px_8px_0px_0px_rgba(231,195,101,1)] hover:shadow-none hover:bg-tertiary hover:text-black transition-all">
+                        START CREATING
+                    </button>
+</div>
+</div>
+<div class="absolute bottom-0 w-full bg-on-surface text-surface py-4 overflow-hidden border-t-2 border-black">
+<div class="ticker-scroll">
+<div class="flex gap-12 font-label-mono-bold text-lg uppercase items-center shrink-0 pr-12">
+<span>SHIRTS · HOODIES · BOTTLES · ACCESSORIES · CAPS · TOTES · SOCKS · PHONE CASES ·</span>
+<span>SHIRTS · HOODIES · BOTTLES · ACCESSORIES · CAPS · TOTES · SOCKS · PHONE CASES ·</span>
+<span>SHIRTS · HOODIES · BOTTLES · ACCESSORIES · CAPS · TOTES · SOCKS · PHONE CASES ·</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Trending Drops -->
+<section class="px-margin-mobile md:px-margin-desktop py-stack-lg flex flex-col md:flex-row gap-gutter">
+<div class="md:w-16 flex md:items-center justify-center">
+<h2 class="font-headline-md text-headline-md [writing-mode:vertical-lr] rotate-180 uppercase text-outline">TRENDING NOW</h2>
+</div>
+<div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter">
+<!-- Product Card 1 -->
+<div class="group relative border-2 border-outline-variant p-4 custom-crosshair hover:border-tertiary transition-colors overflow-hidden">
+<div class="absolute top-2 right-2 bg-primary text-on-primary font-label-mono px-2 py-1 z-10">DROP #091</div>
+<div class="aspect-square bg-surface-container-high overflow-hidden mb-4">
+<img alt="Streetwear Shirt" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A premium heavy-cotton streetwear t-shirt in deep obsidian black, featuring a vibrant, neon-acid yellow graphic design on the chest. The lighting is cinematic, utilizing sharp side-lights to emphasize the fabric's texture and the sharpness of the print. The overall aesthetic is gritty, minimal, and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-Sww4LI1lsUKTeye-fYH2CuEZ_lRjqmM828pgq_fdnbJiFG93xKpt0LTKRUM-l3clFrtpt0f0I6EQw1CdIme2f5I2DTl3L5IX3spLqQZmssxabtSjYs4OAhBmrlhMTgKveFkSmSLyQM6cxTW4CxEcQwqSLgU2nTs-SEDnuwpyD8ybVtMCZsm2SR8TuXjjohP9yqWsjWB4tP8yTTESZ0ERclc_Zz47ZCy5GsutxNi6s1Te_qS4BjOikQ2KMju-3xLXFwPOv6XVWuw"/>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-mono text-xs opacity-60">HEAVY COTTON</p>
+<h3 class="font-headline-md text-2xl uppercase italic">CYBER OVERLOAD TEE</h3>
+</div>
+<span class="font-label-mono-bold text-tertiary">$45</span>
+</div>
+</div>
+<!-- Product Card 2 -->
+<div class="group relative border-2 border-outline-variant p-4 custom-crosshair hover:border-tertiary transition-colors translate-y-8">
+<div class="absolute top-2 right-2 bg-secondary text-on-secondary font-label-mono px-2 py-1 z-10">BESTSELLER</div>
+<div class="aspect-square bg-surface-container-high overflow-hidden mb-4">
+<img alt="Hoodie" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="An oversized streetwear hoodie in a charcoal gray hue, styled with intricate digital embroidery on the sleeves. The studio shot uses high-contrast lighting to create deep shadows and bright highlights, mimicking an underground basement vibe. The background is a stark, textured concrete wall." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZi09nOdJlE66qD-6GzTrpZqeaVwAwFWGmVoNd2EOA5CgmthUetbX0ZoF6Jy72g6n9bOZ8A5KBjjdfrHThDmd0C0vSFYF-zM-IJKWKJ9r2QhsA7VoaDQhPOPCQDlPJv-gRJMzN_jR8osu5lkuQ6o12Rox-8y_AmTA0do44Y8255lSeftkRdPRSDpz5Wd3XGVE1-NhoD8vjY2wjoffHoMGe1ndTy77Sej3nNN6Od7wZKhRFGKlmM2QXfFfFHO6cLhkvrleReKvJR6o"/>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-mono text-xs opacity-60">BOX OVERSIZED</p>
+<h3 class="font-headline-md text-2xl uppercase italic">GLITCH LOGO HOODIE</h3>
+</div>
+<span class="font-label-mono-bold text-tertiary">$85</span>
+</div>
+</div>
+<!-- Product Card 3 -->
+<div class="group relative border-2 border-outline-variant p-4 custom-crosshair hover:border-tertiary transition-colors">
+<div class="aspect-square bg-surface-container-high overflow-hidden mb-4">
+<img alt="Bottle" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A sleek, matte black insulated water bottle with bold, acid yellow typography wrapping around its body. The scene is shot with a macro lens, focusing on the metallic texture and the vibrant print. The lighting is low-key with a single purple backlight, creating a futuristic, industrial atmosphere." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiPn69zOme6vfYa43u9X5JsLB7ijBjRUFTdu7J0U67rs0jAbXbxg1CzktzTxpda_CWWrRu-xs2nSTyHh4-52Y22R1PA3o4THE-I26gpJGru9If5hUbGQGwD-jOq3d-YQer1_ZIlRvSLGZGBicRcePZfrowbAUyFxstApDcQSIck3uaXDvEQ1J84cgb7JpIsW8CCeF7tlyYd5G5ESqDo9CvGQfbdUVmdOt6ad3ftCrGFPjAy7zNNeA8Z9LvJJbuN16u1gvMDkwpmys"/>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-mono text-xs opacity-60">MATTE STEEL</p>
+<h3 class="font-headline-md text-2xl uppercase italic">RADIOACTIVE VESSEL</h3>
+</div>
+<span class="font-label-mono-bold text-tertiary">$32</span>
+</div>
+</div>
+<!-- Product Card 4 -->
+<div class="group relative border-2 border-outline-variant p-4 custom-crosshair hover:border-tertiary transition-colors">
+<div class="aspect-square bg-surface-container-high overflow-hidden mb-4">
+<img alt="Tote Bag" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A canvas tote bag with a high-contrast xerox-style print of a futuristic landscape. The bag is crumpled artistically on a metal grate floor, illuminated by harsh white light that mimics a street-level aesthetic. The color palette is strictly black, white, and a single splash of secondary violet." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBBeiB8vK6edZdcV9-WoWsimr5Hq0rIfc_Xc8BZ7QOZIclsk3gpAb_TmUqlecDWXuZeDLRQkdLp7pyiOkbR41-63aVnxajqQOIiwH3S5cxcDgZhFxyS26FI7kihMGmMqOFU7pebJV6KSYHa2An1vz_BTuir5GADYvYDbCkgu-embZKu7H86VjLzhahR5u_fak6sMlGvZXSm4tJ-N99ZxA-A4iilSkfk0_UZFAHc5D7gnmhD3FafxwDKsM-aKA-OYXPy8jubdcw92as"/>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-mono text-xs opacity-60">CANVAS 12OZ</p>
+<h3 class="font-headline-md text-2xl uppercase italic">ZINE CULTURE TOTE</h3>
+</div>
+<span class="font-label-mono-bold text-tertiary">$25</span>
+</div>
+</div>
+<!-- Product Card 5 -->
+<div class="group relative border-2 border-outline-variant p-4 custom-crosshair hover:border-tertiary transition-colors translate-y-4">
+<div class="aspect-square bg-surface-container-high overflow-hidden mb-4">
+<img alt="Cap" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A 5-panel distressed cotton cap in a faded olive green color, featuring a bold, embroidered logo in white. The lighting is warm and golden-hour inspired, casting long shadows. The setting is a rooftop with a blurred city skyline in the background, maintaining a raw urban streetwear vibe." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAHYWIR6N0nakCxB_XyoQHRdz8gcP4iVtWDYZMqq3pGZ6IRBxLXkRoRx5-ABBucauNXNYOrSB_demwrRJBNK_DtIS3Ppr9YIQq6krMZgpZcdh2nhhrvtcQNWeKgGJ0EPLGno5ZArpsbk8EFvfq5tVeZUTBehjMSnNhCtc2L-Od9nHmi7Ck7CQTXvNE9mTpbZczOwyJNiRTaU6k47lxC6-GeNEdEuJiv2ystsGoI-Ccfrki5Ls_leUCM5BpsqZX_V5K6sBXOJQlVsp0"/>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-mono text-xs opacity-60">5-PANEL CAP</p>
+<h3 class="font-headline-md text-2xl uppercase italic">URBAN EXPLORER HAT</h3>
+</div>
+<span class="font-label-mono-bold text-tertiary">$28</span>
+</div>
+</div>
+<!-- Product Card 6 -->
+<div class="group relative border-2 border-outline-variant p-4 custom-crosshair hover:border-tertiary transition-colors -translate-y-4">
+<div class="aspect-square bg-surface-container-high overflow-hidden mb-4">
+<img alt="Phone Case" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" data-alt="A sleek, high-impact smartphone case with a bold 'PRINTARIA' logo in a holographic finish. The case is held by a hand with neon-painted fingernails, set against a dark background with flickering blue and pink lights. The aesthetic is high-tech, digital-first, and unapologetically bold." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAkgtAO7vlZZvU_0MLQCCDAMfn4nj6YmUQNORyyI8MWGTsu2j2vRwEL3j-s1g8mrn42ngIVLraejVP_ZNdGksiRpgxYEFpA1QxVd5esu4ZnyhjU5N6L0zhNdR8_UTv22rp1lzc7QZ-5OELfuJPhxIXwJy1-JG6cF_qSG0XfG1Q9dws9may97mVDaaUputvJVFvqKp5ghOKryvX-nUXrl_Q_FUzbjfukr9EzK6ntgx9a_nktOCED0_Acc3-ocseewhqUn_aFRqToGYw"/>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-mono text-xs opacity-60">IMPACT PRO</p>
+<h3 class="font-headline-md text-2xl uppercase italic">DIGITAL SHIELD v2</h3>
+</div>
+<span class="font-label-mono-bold text-tertiary">$22</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Social Proof Bar -->
+<section class="bg-tertiary text-on-tertiary py-6 border-y-2 border-black">
+<div class="ticker-scroll">
+<div class="flex gap-24 font-headline-md text-4xl uppercase items-center shrink-0 pr-24 italic tracking-widest">
+<span>50K+ Creators</span>
+<span>·</span>
+<span>Free Design Tools</span>
+<span>·</span>
+<span>Ships in 5 Days</span>
+<span>·</span>
+<span>50K+ Creators</span>
+<span>·</span>
+<span>Free Design Tools</span>
+<span>·</span>
+<span>Ships in 5 Days</span>
+</div>
+</div>
+</section>
+<!-- How It Works -->
+<section class="bg-surface-container-low py-24 relative overflow-hidden">
+<div class="absolute inset-0 clip-diag bg-surface-container-highest z-0 opacity-20"></div>
+<div class="px-margin-mobile md:px-margin-desktop relative z-10">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-16 italic">HOW IT WORKS</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+<!-- Step 1 -->
+<div class="relative p-8 border-2 border-outline-variant bg-surface group hover:border-primary">
+<span class="absolute -top-10 -left-4 font-display-xl text-9xl opacity-10 group-hover:opacity-30 transition-opacity">01</span>
+<h3 class="font-headline-md text-3xl mb-4 text-primary">DESIGN</h3>
+<p class="font-body-md text-on-surface-variant">Upload your raw files or use our in-studio glitch tools to create your vibe. No limits.</p>
+<div class="mt-8 h-1 bg-outline-variant w-1/2 group-hover:w-full transition-all group-hover:bg-primary"></div>
+</div>
+<!-- Step 2 -->
+<div class="relative p-8 border-2 border-outline-variant bg-surface group hover:border-secondary">
+<span class="absolute -top-10 -left-4 font-display-xl text-9xl opacity-10 group-hover:opacity-30 transition-opacity">02</span>
+<h3 class="font-headline-md text-3xl mb-4 text-secondary">ORDER</h3>
+<p class="font-body-md text-on-surface-variant">Pick your canvas. We print on premium heavyweight fabrics with eco-friendly ink tech.</p>
+<div class="mt-8 h-1 bg-outline-variant w-1/2 group-hover:w-full transition-all group-hover:bg-secondary"></div>
+</div>
+<!-- Step 3 -->
+<div class="relative p-8 border-2 border-outline-variant bg-surface group hover:border-tertiary">
+<span class="absolute -top-10 -left-4 font-display-xl text-9xl opacity-10 group-hover:opacity-30 transition-opacity">03</span>
+<h3 class="font-headline-md text-3xl mb-4 text-tertiary">SELL</h3>
+<p class="font-body-md text-on-surface-variant">Launch your own drop. We handle fulfillment, you collect the royalties. Fast cash.</p>
+<div class="mt-8 h-1 bg-outline-variant w-1/2 group-hover:w-full transition-all group-hover:bg-tertiary"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Feature Highlight -->
+<section class="px-margin-mobile md:px-margin-desktop py-stack-lg border-t-2 border-outline-variant">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="relative">
+<div class="absolute -top-10 -right-10 w-64 h-64 bg-primary opacity-20 blur-3xl rounded-full"></div>
+<div class="bg-surface-container-high border-2 border-white p-2 rotate-1">
+<img alt="3D Creator Mockup" class="w-full h-full object-cover" data-alt="A detailed 3D digital workspace showing a professional streetwear design software. A 3D t-shirt model is rotated on-screen with digital transformation handles and wireframe overlays visible. The lighting is high-tech with blue and violet screen-glow casting soft light on a modern, industrial desk." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAqI8XpMiePhTHjUYdTwEY-Uc3g71GeIw_jDVuXauAok3QOx3palaj-jNUnMxWZgeDILpMGUzqtnpJIFQVkyeVQZ1sAe2vn9EW2zkeUxPO50XpESSgPfJj5xPOQsgs_l1Gt6EI2BQqaaYnBOMal6Bvz5L0dY_J3fCTdrqcLO3rYuWgnZHQkGPRsZxTYhfBBPvhiZ_GPcjHW1KdCYZA_XO0asqgsQytEAgV7A6GH_sdwNRmtSub9I5odImgcpf9AW47Gb_rEIRixyHs"/>
+</div>
+</div>
+<div class="space-y-8">
+<h2 class="font-display-lg text-display-lg-mobile md:text-5xl uppercase leading-none">REAL-TIME 3D<br/>STREETWEAR STUDIO</h2>
+<div class="flex flex-wrap gap-4">
+<span class="bg-primary text-on-primary font-label-mono-bold px-4 py-2 border border-black shadow-[4px_4px_0px_0px_black]">UPLOAD ART</span>
+<span class="bg-tertiary text-on-tertiary font-label-mono-bold px-4 py-2 border border-black shadow-[4px_4px_0px_0px_black]">PICK COLORS</span>
+<span class="bg-secondary text-on-secondary font-label-mono-bold px-4 py-2 border border-black shadow-[4px_4px_0px_0px_black]">PREVIEW 3D</span>
+<span class="bg-on-background text-background font-label-mono-bold px-4 py-2 border border-black shadow-[4px_4px_0px_0px_black]">AUTO-EXPORT</span>
+</div>
+<div class="pt-8 flex items-center gap-6 group">
+<button class="bg-tertiary text-on-tertiary font-headline-md text-3xl px-10 py-5 shadow-[6px_6px_0px_0px_white] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+                            OPEN THE CREATOR
+                        </button>
+<span class="material-symbols-outlined text-tertiary text-6xl group-hover:translate-x-4 transition-transform" data-icon="east">east</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Categories Scroll -->
+<section class="py-stack-lg border-y-2 border-outline-variant overflow-hidden">
+<div class="px-margin-mobile md:px-margin-desktop mb-8">
+<h3 class="font-label-mono-bold text-outline uppercase tracking-[0.2em]">BY CATEGORY</h3>
+</div>
+<div class="flex gap-4 overflow-x-auto px-margin-mobile md:px-margin-desktop no-scrollbar pb-4">
+<a class="shrink-0 font-display-xl text-6xl md:text-8xl hover:text-tertiary transition-colors border-2 border-outline-variant px-8 py-4 hover:border-tertiary italic" href="#">#APPAREL</a>
+<a class="shrink-0 font-display-xl text-6xl md:text-8xl hover:text-primary transition-colors border-2 border-outline-variant px-8 py-4 hover:border-primary italic" href="#">#DRINKWARE</a>
+<a class="shrink-0 font-display-xl text-6xl md:text-8xl hover:text-secondary transition-colors border-2 border-outline-variant px-8 py-4 hover:border-secondary italic" href="#">#PRINTS</a>
+<a class="shrink-0 font-display-xl text-6xl md:text-8xl hover:text-tertiary transition-colors border-2 border-outline-variant px-8 py-4 hover:border-tertiary italic" href="#">#LIFESTYLE</a>
+<a class="shrink-0 font-display-xl text-6xl md:text-8xl hover:text-primary transition-colors border-2 border-outline-variant px-8 py-4 hover:border-primary italic" href="#">#TECH</a>
+</div>
+</section>
+<!-- Community Grid -->
+<section class="px-margin-mobile md:px-margin-desktop py-stack-lg">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg italic leading-tight">THE CULTURE<br/>IS WEARING IT</h2>
+<a class="font-label-mono text-primary underline underline-offset-8 decoration-2 hover:text-tertiary" href="#">@PRINTARIA_LABS</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="aspect-square bg-surface-container overflow-hidden border border-outline-variant hover:scale-[1.02] transition-transform">
+<img alt="UGC 1" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="A candid, low-angle shot of a person in a busy city square wearing a vibrant streetwear hoodie. The photo has a high-grain, cinematic film aesthetic with a soft glow from nearby neon signs. The lighting is nocturnal and atmospheric, emphasizing the rich textures and bold colors of the streetwear." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHb_AfD7E1qQMQ0VDC3RAarVfAShG0Mx5oxKs_UVMLPBazkbRHgJ7lcLmxoJlovVsJ7vt2IDdM4DtzbwgpUqXIIBB4hrvpt27TThK7K61W5sa7sbQKwIC7CcI1_-5GruD_rcy6Z94U58wIBLoE7SqTIn1dDOD7-w_sst7EtdL7b4XGzXZHh44gVrtbvKolaMQ3kSa4ZnTCcYsv9cEeR3t90pL_MAzI9T2pyE73GtEbYMPCNgcgwBUnYMWlWGN80mDFJe9Y9AoBiAI"/>
+</div>
+<div class="aspect-square bg-surface-container overflow-hidden border border-outline-variant hover:scale-[1.02] transition-transform">
+<img alt="UGC 2" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="A stylish portrait of a creator in a modern loft studio, surrounded by digital screens and design gear. The subject is wearing custom-printed streetwear with a bold graphic. The lighting is soft and diffused with strong shadows, creating a high-fashion, professional look with a raw edge." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm5i5GVerZI4LoGPfKV6MshM5MyaiFARfmWeVA9cvw7ZND5MqL8oNUE24Wv_QlEbHpfgeuZ7NNpOfP9wUA1mtoyPhoWWQ6gkfBoYXuBYvEmZdx6eY-net6Abqq395GaweIwDg_vgKwjDFdcyL-OzzgiLBKteTjX2uMCH9j3f5SoIvlwlgzxlhxWkfuL0kd59yZUmbaNnhl6hqgsX9zuIR5oKOcVRyaVsLCk9RqVcInz3lzUwRodiSYbU75_n-zX0fOxLQpne2ut1A"/>
+</div>
+<div class="aspect-square bg-surface-container overflow-hidden border border-outline-variant hover:scale-[1.02] transition-transform">
+<img alt="UGC 3" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="Action shot of a skater performing a trick in a gritty, concrete skatepark at dusk. They are wearing a custom hoodie with a large, reflective logo. The lighting is harsh and directional, creating dramatic high-contrast visuals that highlight the motion and the streetwear's aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRI6D1DuvSMNksRa01g2JRSvXgB592aPtFNbY5Sx1jOoMCstFNydr2qHK2tyBmD6ntHMaFxs4yncX1gINWqKjORSITJ-CbNgv59-4wNkVQ6kwsctJi0Kw1z9MycrIJLjIrSN9-9lDmYzSMsAgFB0g0zn_dgmBxZTReFqDvqjngQh8CBKOi9qQCNi70M_hGceCPs7QkqidwskqFLR-dnUUwqSjrYloZzGxXoKs6jRizhmpnFkgGc3RAY6ScqEad7FSAR-IRPRoZIMQ"/>
+</div>
+<div class="aspect-square bg-surface-container overflow-hidden border border-outline-variant hover:scale-[1.02] transition-transform">
+<img alt="UGC 4" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-500" data-alt="A group of friends standing in front of a colorful, spray-painted mural in a vibrant urban neighborhood. They are all wearing various custom Printaria pieces, including hats, tees, and bags. The lighting is bright and sunny, highlighting the bold colors and the diverse styles of the streetwear culture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnrOAqTjWcS1WgGdD3i6YDX1z-LIKFulomTYfGFEJxT-HLWhck4xbmFLJT_C5_KmgC2w7Hyn4-0RshzHTLY8JTYQveWi4_P3rqx0BTUuREESrPxFU1OlpMvgapSVRQSvybPvpiKBOMDE9EfyvbxKtrOyMihBxiZCV7ovlK0_LCp_XVllNTt1eRCLjX0mRx78hrfBlhE8oa9LQ469OQEZVAGUfSqVU33rew8TCa1qku9D2sC7Sw6TLVGxmUVdFLIqO0v7hMB58CzfE"/>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t-2 border-outline-variant grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-mobile md:px-margin-desktop py-stack-lg relative overflow-hidden">
+<div class="md:col-span-12 mb-12">
+<div class="font-display-lg text-display-lg-mobile md:text-display-xl text-on-surface-variant opacity-10 uppercase leading-none tracking-tighter">PRINTARIA LABS</div>
+</div>
+<div class="md:col-span-4">
+<h4 class="font-headline-md text-2xl text-primary mb-6 uppercase">The Mission</h4>
+<p class="font-body-md text-on-surface-variant mb-8 max-w-sm">We provide the tools for the next generation of streetwear icons. Unapologetically custom, built for the underground.</p>
+<div class="flex gap-4">
+<a class="material-symbols-outlined text-3xl hover:text-tertiary transition-colors" data-icon="brand_awareness" href="#">brand_awareness</a>
+<a class="material-symbols-outlined text-3xl hover:text-tertiary transition-colors" data-icon="share" href="#">share</a>
+<a class="material-symbols-outlined text-3xl hover:text-tertiary transition-colors" data-icon="public" href="#">public</a>
+</div>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-mono-bold text-on-surface mb-6 uppercase">SHOP</h4>
+<ul class="flex flex-col gap-4">
+<li><a class="text-on-surface-variant font-label-mono hover:text-tertiary transition-colors" href="#">All Products</a></li>
+<li><a class="text-on-surface-variant font-label-mono hover:text-tertiary transition-colors" href="#">Latest Drops</a></li>
+<li><a class="text-on-surface-variant font-label-mono hover:text-tertiary transition-colors" href="#">Best Sellers</a></li>
+<li><a class="text-on-surface-variant font-label-mono hover:text-tertiary transition-colors" href="#">Studio Tool</a></li>
+</ul>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-mono-bold text-on-surface mb-6 uppercase">SUPPORT</h4>
+<ul class="flex flex-col gap-4">
+<li><a class="text-on-surface-variant font-label-mono hover:text-tertiary transition-colors" href="#">Shipping</a></li>
+<li><a class="text-on-surface-variant font-label-mono hover:text-tertiary transition-colors" href="#">Sizing Guide</a></li>
+<li><a class="text-on-surface-variant font-label-mono hover:text-tertiary transition-colors" href="#">Contact</a></li>
+<li><a class="text-on-surface-variant font-label-mono hover:text-tertiary transition-colors" href="#">FAQ</a></li>
+</ul>
+</div>
+<div class="md:col-span-4">
+<h4 class="font-label-mono-bold text-on-surface mb-6 uppercase">NEWSLETTER</h4>
+<div class="relative">
+<input class="w-full bg-transparent border-b-2 border-white py-4 font-label-mono text-on-surface focus:outline-none focus:border-tertiary placeholder:text-outline-variant" placeholder="ENTER EMAIL" type="email"/>
+<button class="absolute right-0 bottom-4 font-label-mono-bold text-tertiary hover:translate-x-2 transition-transform">SUBMIT</button>
+</div>
+<p class="mt-4 text-[10px] font-label-mono text-outline-variant uppercase">No spam. Just heat.</p>
+</div>
+<div class="md:col-span-12 mt-16 pt-8 border-t border-outline-variant flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="font-label-mono text-xs opacity-40">©2024 PRINTARIA LABS. UNAPOLOGETICALLY CUSTOM.</p>
+<div class="flex gap-8 font-label-mono text-xs opacity-40 uppercase">
+<a class="hover:text-on-surface" href="#">Privacy</a>
+<a class="hover:text-on-surface" href="#">Terms</a>
+</div>
+</div>
+<!-- Hidden Doodle -->
+<div class="absolute -bottom-4 -right-4 opacity-10 rotate-12 cursor-pointer hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-8xl" data-icon="gesture">gesture</span>
+</div>
+</footer>
+</body></html>

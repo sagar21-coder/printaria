@@ -1,0 +1,685 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&amp;family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;family=Syne:wght@400;500;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-tertiary-fixed-variant": "#594400",
+                        "surface-container-highest": "#36343a",
+                        "surface-tint": "#cfbcff",
+                        "on-surface-variant": "#cbc4d2",
+                        "on-error-container": "#ffdad6",
+                        "primary": "#cfbcff",
+                        "surface-bright": "#3b383e",
+                        "outline": "#948e9c",
+                        "surface": "#141218",
+                        "tertiary-fixed-dim": "#e7c365",
+                        "secondary": "#cdc0e9",
+                        "surface-container-lowest": "#0f0d13",
+                        "error": "#ffb4ab",
+                        "inverse-primary": "#6750a4",
+                        "secondary-fixed-dim": "#cdc0e9",
+                        "on-secondary-fixed": "#1f1635",
+                        "inverse-surface": "#e6e0e9",
+                        "on-primary-container": "#e0d2ff",
+                        "on-primary-fixed-variant": "#4f378a",
+                        "tertiary-container": "#c9a74d",
+                        "on-secondary": "#342b4b",
+                        "on-secondary-container": "#bfb2da",
+                        "on-secondary-fixed-variant": "#4b4263",
+                        "surface-dim": "#141218",
+                        "surface-container-low": "#1d1b20",
+                        "secondary-container": "#4d4465",
+                        "on-tertiary": "#3e2e00",
+                        "on-surface": "#e6e0e9",
+                        "tertiary": "#e7c365",
+                        "on-tertiary-container": "#503d00",
+                        "surface-variant": "#36343a",
+                        "on-primary-fixed": "#22005d",
+                        "on-background": "#e6e0e9",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#241a00",
+                        "background": "#141218",
+                        "surface-container": "#211f24",
+                        "secondary-fixed": "#e9ddff",
+                        "outline-variant": "#494551",
+                        "on-primary": "#381e72",
+                        "error-container": "#93000a",
+                        "primary-fixed-dim": "#cfbcff",
+                        "primary-container": "#6750a4",
+                        "inverse-on-surface": "#322f35",
+                        "primary-fixed": "#e9ddff",
+                        "surface-container-high": "#2b292f",
+                        "tertiary-fixed": "#ffdf93"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "stack-sm": "8px",
+                        "stack-lg": "64px",
+                        "margin-mobile": "16px",
+                        "stack-md": "24px",
+                        "gutter": "16px",
+                        "unit": "4px",
+                        "margin-desktop": "40px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Bebas Neue"],
+                        "label-mono-bold": ["Space Mono"],
+                        "body-md": ["Syne"],
+                        "display-xl": ["Bebas Neue"],
+                        "display-lg-mobile": ["Bebas Neue"],
+                        "display-lg": ["Bebas Neue"],
+                        "body-lg": ["Syne"],
+                        "label-mono": ["Space Mono"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["40px", {"lineHeight": "40px", "fontWeight": "400"}],
+                        "label-mono-bold": ["14px", {"lineHeight": "1.2", "fontWeight": "700"}],
+                        "body-md": ["16px", {"lineHeight": "1.5", "fontWeight": "500"}],
+                        "display-xl": ["120px", {"lineHeight": "100px", "letterSpacing": "-0.02em", "fontWeight": "400"}],
+                        "display-lg-mobile": ["48px", {"lineHeight": "44px", "fontWeight": "400"}],
+                        "display-lg": ["80px", {"lineHeight": "72px", "fontWeight": "400"}],
+                        "body-lg": ["20px", {"lineHeight": "1.4", "fontWeight": "700"}],
+                        "label-mono": ["12px", {"lineHeight": "1.2", "letterSpacing": "0.1em", "fontWeight": "400"}]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: "FILL" 0, "wght" 400, "GRAD" 0, "opsz" 24;
+        }
+
+        /* --- Animations & Micro-interactions --- */
+        
+        /* Custom Cursor */
+        #custom-cursor {
+            width: 12px;
+            height: 12px;
+            background: #e7c365;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: width 0.3s, height 0.3s, transform 0.1s ease-out;
+            display: none;
+        }
+        @media (min-width: 1024px) { #custom-cursor { display: block; } body { cursor: none; } }
+        
+        #custom-cursor.active {
+            width: 60px;
+            height: 60px;
+            background: transparent;
+            border: 1px solid #e7c365;
+        }
+        
+        #custom-cursor .cursor-text {
+            display: none;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            white-space: nowrap;
+            font-size: 8px;
+            color: #e7c365;
+            animation: rotateText 10s linear infinite;
+        }
+        #custom-cursor.active .cursor-text { display: block; }
+        
+        @keyframes rotateText {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* Loading Screen */
+        #loading-screen {
+            position: fixed;
+            inset: 0;
+            background: #141218;
+            z-index: 10000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .loading-split {
+            position: absolute;
+            height: 50%;
+            width: 100%;
+            background: #141218;
+            transition: transform 0.8s cubic-bezier(0.85, 0, 0.15, 1);
+        }
+        .loading-split-top { top: 0; }
+        .loading-split-bottom { bottom: 0; }
+        .loaded .loading-split-top { transform: translateY(-100%); }
+        .loaded .loading-split-bottom { transform: translateY(100%); }
+        
+        /* Glitch Effect */
+        .glitch-text:hover {
+            animation: glitch-anim 0.2s cubic-bezier(.25, .46, .45, .94) both infinite;
+            text-shadow: 2px 0 #ff00ff, -2px 0 #00ffff;
+        }
+        @keyframes glitch-anim {
+            0% { transform: translate(0); }
+            20% { transform: translate(-2px, 2px); }
+            40% { transform: translate(-2px, -2px); }
+            60% { transform: translate(2px, 2px); }
+            80% { transform: translate(2px, -2px); }
+            100% { transform: translate(0); }
+        }
+
+        /* Reveal Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .reveal-flip { transform: rotateX(-90deg); opacity: 0; }
+        .reveal-flip.active { transform: rotateX(0); opacity: 1; }
+
+        /* General Utilities */
+        .grain-overlay {
+            background-image: url(https://lh3.googleusercontent.com/aida-public/AB6AXuA4seqw-oOl6ZVvlUkDkY-Fz7b8sE02wbLMffguhdOuLyf-_1VK0lOsylHg4sCjVeNf7zLbxj7z3Q4iNHzl37b1iTw76eegvzpIV9bokOITlBIdluW6DdcGayqVOpwDbLiKfUWRM_0zo_dz_usg2mmXqr6dFIwU2fIRatL7AoP6BxEHsAL-WoeOwhoRH5Cv7Ul28yMKvMLZ5AtK2O1GkpITHvU65wIq8lZE3_UU6IBP6ow2ZyE_s7nytfp1ielg8cYyMZb77Rb1760);
+            pointer-events: none;
+            opacity: 0.1;
+        }
+        .ticker-scroll {
+            display: flex;
+            white-space: nowrap;
+            animation: scroll 30s linear infinite;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+        .rotated-rules { transform: rotate(-3deg); }
+        .clip-diag { clip-path: polygon(0 10%, 100% 0, 100% 90%, 0 100%); }
+        
+        /* Parallax Layer */
+        .parallax-layer { transition: transform 0.1s ease-out; }
+
+        /* Progress Bar */
+        #progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 3px;
+            background: #cfbcff;
+            z-index: 100;
+            width: 0%;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+                scroll-behavior: auto !important;
+            }
+        }
+
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+    </style>
+</head>
+<body class="bg-background text-on-background font-body-md selection:bg-tertiary selection:text-on-tertiary overflow-x-hidden">
+<!-- Progress Bar -->
+<div id="progress-bar"></div>
+<!-- Custom Cursor -->
+<div id="custom-cursor">
+<span class="cursor-text">CUSTOMIZE · CUSTOMIZE · CUSTOMIZE ·</span>
+</div>
+<!-- Loading Screen -->
+<div id="loading-screen">
+<div class="loading-split loading-split-top"></div>
+<div class="loading-split loading-split-bottom"></div>
+<div class="z-50 text-primary font-headline-md text-6xl tracking-widest overflow-hidden">
+<span id="loader-typewriter"></span><span class="animate-pulse">_</span>
+</div>
+</div>
+<div class="fixed inset-0 grain-overlay z-[100]"></div>
+<!-- TopNavBar -->
+<nav class="bg-surface/80 border-b-2 border-tertiary shadow-[4px_4px_0px_0px_rgba(205,192,233,1)] flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 w-full sticky top-0 z-50 backdrop-blur-md transition-all duration-500 transform -translate-y-full opacity-0" id="main-nav">
+<div class="font-headline-md text-headline-md tracking-tighter uppercase text-primary italic glitch-text cursor-pointer">PRINTARIA®</div>
+<div class="hidden md:flex gap-8 items-center">
+<a class="text-tertiary font-label-mono-bold underline decoration-2 underline-offset-8" href="#">Shop</a>
+<a class="text-on-surface font-label-mono uppercase hover:bg-tertiary hover:text-on-tertiary transition-all duration-75 px-2 py-1" href="#">Drops</a>
+<a class="text-on-surface font-label-mono uppercase hover:bg-tertiary hover:text-on-tertiary transition-all duration-75 px-2 py-1" href="#">Studio</a>
+<a class="text-on-surface font-label-mono uppercase hover:bg-tertiary hover:text-on-tertiary transition-all duration-75 px-2 py-1" href="#">Sell</a>
+</div>
+<div class="flex items-center gap-4">
+<button class="material-symbols-outlined text-primary text-2xl hover:scale-110 transition-transform" data-icon="account_circle">account_circle</button>
+<button class="material-symbols-outlined text-primary text-2xl hover:scale-110 transition-transform" data-icon="dark_mode" id="theme-toggle">dark_mode</button>
+<div class="bg-tertiary text-on-tertiary px-4 py-1 font-label-mono-bold active:translate-x-1 active:translate-y-1 active:shadow-none transition-all shadow-[4px_4px_0px_0px_rgba(205,192,233,1)] cursor-pointer magnetic-btn">
+                Cart (0)
+            </div>
+</div>
+</nav>
+<main class="opacity-0" id="content-wrap">
+<!-- Hero Section -->
+<section class="relative min-h-[921px] flex flex-col justify-center items-center overflow-hidden pt-10" id="hero-section">
+<div class="absolute inset-0 z-0 opacity-40 parallax-layer" data-speed="0.02">
+<img alt="Collage Background" class="w-full h-full object-cover grayscale brightness-50" loading="eager" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB8r-423zgGSi6m7sR6WgWvujL5JdY1YcFNZBsNfAG_kb9koIbj3rPqjA9mz0rjQ1s33KPeolgbgW32PefDSGZnz2Ibg8zi0d1QupenhyDRsuYdYdJtVbpeb7bI9htCsVO85Ibfw-n1LbAywIkCtJd9_emjvQMxs15skxV2t-GR33kH_vPVKoaVBfYJezrD_HFlIT4_peB419S0vNFbZi6MpqN6E2wE8hC2ZwPPnfY2Vpp2Dxqh7oWneNF9aHBDMIi651MEwEXhm9k"/>
+</div>
+<div class="relative z-10 text-center px-margin-mobile flex flex-col items-center">
+<h1 class="font-display-xl text-display-lg-mobile md:text-display-xl flex flex-col gap-0 leading-none overflow-hidden" id="hero-title">
+<span class="block -rotate-1 self-start translate-y-full opacity-0">YOUR DESIGN</span>
+<span class="block rotated-rules bg-tertiary text-on-tertiary px-8 py-2 border-4 border-black mx-auto my-4 w-fit scale-0 opacity-0">YOUR RULES</span>
+<span class="block rotate-1 self-end translate-y-full opacity-0">WEAR IT.</span>
+</h1>
+<div class="mt-stack-lg group reveal">
+<button class="magnetic-btn bg-on-background text-background font-headline-md text-headline-md px-12 py-6 border-2 border-white shadow-[8px_8px_0px_0px_rgba(231,195,101,1)] hover:shadow-none hover:bg-tertiary hover:text-black transition-all">
+                        START CREATING
+                    </button>
+</div>
+</div>
+<!-- Floating badge -->
+<div class="absolute top-1/4 right-10 md:right-20 animate-bounce reveal delay-500">
+<div class="bg-primary text-on-primary rounded-full w-24 h-24 flex items-center justify-center font-label-mono-bold text-center -rotate-12 border-2 border-black shadow-xl">
+                    NEW<br/>DROP
+                </div>
+</div>
+<div class="absolute bottom-0 w-full bg-on-surface text-surface py-4 overflow-hidden border-t-2 border-black">
+<div class="ticker-scroll">
+<div class="flex gap-12 font-label-mono-bold text-lg uppercase items-center shrink-0 pr-12">
+<span>SHIRTS · HOODIES · BOTTLES · ACCESSORIES · CAPS · TOTES · SOCKS · PHONE CASES ·</span>
+<span>SHIRTS · HOODIES · BOTTLES · ACCESSORIES · CAPS · TOTES · SOCKS · PHONE CASES ·</span>
+<span>SHIRTS · HOODIES · BOTTLES · ACCESSORIES · CAPS · TOTES · SOCKS · PHONE CASES ·</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Trending Drops -->
+<section class="px-margin-mobile md:px-margin-desktop py-stack-lg flex flex-col md:flex-row gap-gutter">
+<div class="md:w-16 flex md:items-center justify-center reveal reveal-flip">
+<h2 class="font-headline-md text-headline-md md:[writing-mode:vertical-lr] md:rotate-180 uppercase text-outline">TRENDING NOW</h2>
+</div>
+<div class="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-gutter" id="product-grid">
+<!-- Product Card 1 -->
+<div class="product-card group relative border-2 border-outline-variant p-4 hover:border-tertiary transition-all duration-500 reveal hover:-translate-y-2 hover:shadow-[10px_10px_0px_0px_#e7c365]">
+<div class="absolute top-2 right-2 bg-primary text-on-primary font-label-mono px-2 py-1 z-10 glitch-text">DROP #091</div>
+<div class="aspect-square bg-surface-container-high overflow-hidden mb-4 relative">
+<img alt="Streetwear Shirt" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 product-img" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-Sww4LI1lsUKTeye-fYH2CuEZ_lRjqmM828pgq_fdnbJiFG93xKpt0LTKRUM-l3clFrtpt0f0I6EQw1CdIme2f5I2DTl3L5IX3spLqQZmssxabtSjYs4OAhBmrlhMTgKveFkSmSLyQM6cxTW4CxEcQwqSLgU2nTs-SEDnuwpyD8ybVtMCZsm2SR8TuXjjohP9yqWsjWB4tP8yTTESZ0ERclc_Zz47ZCy5GsutxNi6s1Te_qS4BjOikQ2KMju-3xLXFwPOv6XVWuw"/>
+<div class="absolute inset-0 bg-black/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">
+<button class="bg-tertiary text-on-tertiary px-6 py-2 font-label-mono-bold transform translate-y-10 group-hover:translate-y-0 transition-transform">QUICK CUSTOMIZE</button>
+</div>
+</div>
+<div class="flex justify-between items-end">
+<div>
+<p class="font-label-mono text-xs opacity-60">HEAVY COTTON</p>
+<h3 class="font-headline-md text-2xl uppercase italic">CYBER OVERLOAD TEE</h3>
+<div class="flex gap-2 mt-2">
+<button class="w-4 h-4 rounded-full bg-black border border-white cursor-pointer color-dot" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuC-Sww4LI1lsUKTeye-fYH2CuEZ_lRjqmM828pgq_fdnbJiFG93xKpt0LTKRUM-l3clFrtpt0f0I6EQw1CdIme2f5I2DTl3L5IX3spLqQZmssxabtSjYs4OAhBmrlhMTgKveFkSmSLyQM6cxTW4CxEcQwqSLgU2nTs-SEDnuwpyD8ybVtMCZsm2SR8TuXjjohP9yqWsjWB4tP8yTTESZ0ERclc_Zz47ZCy5GsutxNi6s1Te_qS4BjOikQ2KMju-3xLXFwPOv6XVWuw"></button>
+<button class="w-4 h-4 rounded-full bg-white border border-black cursor-pointer color-dot" data-img="https://lh3.googleusercontent.com/aida-public/AB6AXuCZi09nOdJlE66qD-6GzTrpZqeaVwAwFWGmVoNd2EOA5CgmthUetbX0ZoF6Jy72g6n9bOZ8A5KBjjdfrHThDmd0C0vSFYF-zM-IJKWKJ9r2QhsA7VoaDQhPOPCQDlPJv-gRJMzN_jR8osu5lkuQ6o12Rox-8y_AmTA0do44Y8255lSeftkRdPRSDpz5Wd3XGVE1-NhoD8vjY2wjoffHoMGe1ndTy77Sej3nNN6Od7wZKhRFGKlmM2QXfFfFHO6cLhkvrleReKvJR6o"></button>
+</div>
+</div>
+<span class="font-label-mono-bold text-tertiary">$45</span>
+</div>
+</div>
+<!-- Repeat for other cards (Simplified for brevity but maintaining original IDs) -->
+<div class="product-card group relative border-2 border-outline-variant p-4 hover:border-tertiary transition-all duration-500 reveal delay-100 hover:-translate-y-2 hover:shadow-[10px_10px_0px_0px_#cdc0e9]">
+<div class="absolute top-2 right-2 bg-secondary text-on-secondary font-label-mono px-2 py-1 z-10 glitch-text">BESTSELLER</div>
+<div class="aspect-square bg-surface-container-high overflow-hidden mb-4">
+<img alt="Hoodie" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZi09nOdJlE66qD-6GzTrpZqeaVwAwFWGmVoNd2EOA5CgmthUetbX0ZoF6Jy72g6n9bOZ8A5KBjjdfrHThDmd0C0vSFYF-zM-IJKWKJ9r2QhsA7VoaDQhPOPCQDlPJv-gRJMzN_jR8osu5lkuQ6o12Rox-8y_AmTA0do44Y8255lSeftkRdPRSDpz5Wd3XGVE1-NhoD8vjY2wjoffHoMGe1ndTy77Sej3nNN6Od7wZKhRFGKlmM2QXfFfFHO6cLhkvrleReKvJR6o"/>
+</div>
+<div class="flex justify-between items-end">
+<div><p class="font-label-mono text-xs opacity-60">BOX OVERSIZED</p><h3 class="font-headline-md text-2xl uppercase italic">GLITCH LOGO HOODIE</h3></div>
+<span class="font-label-mono-bold text-tertiary">$85</span>
+</div>
+</div>
+<!-- ... additional product cards remain ... -->
+<div class="product-card group relative border-2 border-outline-variant p-4 hover:border-tertiary transition-all duration-500 reveal delay-200 hover:-translate-y-2">
+<div class="aspect-square bg-surface-container-high overflow-hidden mb-4">
+<img alt="Bottle" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDiPn69zOme6vfYa43u9X5JsLB7ijBjRUFTdu7J0U67rs0jAbXbxg1CzktzTxpda_CWWrRu-xs2nSTyHh4-52Y22R1PA3o4THE-I26gpJGru9If5hUbGQGwD-jOq3d-YQer1_ZIlRvSLGZGBicRcePZfrowbAUyFxstApDcQSIck3uaXDvEQ1J84cgb7JpIsW8CCeF7tlyYd5G5ESqDo9CvGQfbdUVmdOt6ad3ftCrGFPjAy7zNNeA8Z9LvJJbuN16u1gvMDkwpmys"/>
+</div>
+<div class="flex justify-between items-end">
+<div><p class="font-label-mono text-xs opacity-60">MATTE STEEL</p><h3 class="font-headline-md text-2xl uppercase italic">RADIOACTIVE VESSEL</h3></div>
+<span class="font-label-mono-bold text-tertiary">$32</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Social Proof Bar -->
+<section class="bg-tertiary text-on-tertiary py-6 border-y-2 border-black reveal">
+<div class="ticker-scroll">
+<div class="flex gap-24 font-headline-md text-4xl uppercase items-center shrink-0 pr-24 italic tracking-widest">
+<span>50K+ Creators</span><span>·</span><span>Free Design Tools</span><span>·</span><span>Ships in 5 Days</span><span>·</span>
+<span>50K+ Creators</span><span>·</span><span>Free Design Tools</span><span>·</span><span>Ships in 5 Days</span>
+</div>
+</div>
+</section>
+<!-- How It Works -->
+<section class="bg-surface-container-low py-24 relative overflow-hidden">
+<div class="absolute inset-0 clip-diag bg-surface-container-highest z-0 opacity-20"></div>
+<div class="px-margin-mobile md:px-margin-desktop relative z-10">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg mb-16 italic reveal reveal-flip">HOW IT WORKS</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
+<!-- Step 1 -->
+<div class="relative p-8 border-2 border-outline-variant bg-surface group hover:border-primary reveal hover:rotate-1 transition-transform">
+<span class="absolute -top-10 -left-4 font-display-xl text-9xl opacity-10 group-hover:opacity-30 transition-opacity">01</span>
+<h3 class="font-headline-md text-3xl mb-4 text-primary">DESIGN</h3>
+<p class="font-body-md text-on-surface-variant">Upload your raw files or use our in-studio glitch tools to create your vibe. No limits.</p>
+<div class="mt-8 h-1 bg-outline-variant w-1/2 group-hover:w-full transition-all group-hover:bg-primary"></div>
+</div>
+<!-- Step 2 -->
+<div class="relative p-8 border-2 border-outline-variant bg-surface group hover:border-secondary reveal delay-100 hover:-rotate-1 transition-transform">
+<span class="absolute -top-10 -left-4 font-display-xl text-9xl opacity-10 group-hover:opacity-30 transition-opacity">02</span>
+<h3 class="font-headline-md text-3xl mb-4 text-secondary">ORDER</h3>
+<p class="font-body-md text-on-surface-variant">Pick your canvas. We print on premium heavyweight fabrics with eco-friendly ink tech.</p>
+<div class="mt-8 h-1 bg-outline-variant w-1/2 group-hover:w-full transition-all group-hover:bg-secondary"></div>
+</div>
+<!-- Step 3 -->
+<div class="relative p-8 border-2 border-outline-variant bg-surface group hover:border-tertiary reveal delay-200 hover:rotate-1 transition-transform">
+<span class="absolute -top-10 -left-4 font-display-xl text-9xl opacity-10 group-hover:opacity-30 transition-opacity">03</span>
+<h3 class="font-headline-md text-3xl mb-4 text-tertiary">SELL</h3>
+<p class="font-body-md text-on-surface-variant">Launch your own drop. We handle fulfillment, you collect the royalties. Fast cash.</p>
+<div class="mt-8 h-1 bg-outline-variant w-1/2 group-hover:w-full transition-all group-hover:bg-tertiary"></div>
+</div>
+</div>
+</div>
+</section>
+<!-- Feature Highlight / Live Product Customizer Demo -->
+<section class="px-margin-mobile md:px-margin-desktop py-stack-lg border-t-2 border-outline-variant">
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+<div class="relative reveal reveal-flip">
+<div class="absolute -top-10 -right-10 w-64 h-64 bg-primary opacity-20 blur-3xl rounded-full"></div>
+<div class="bg-surface-container-high border-2 border-white p-6 shadow-[20px_20px_0px_0px_#6750a4]">
+<div class="aspect-square flex items-center justify-center transition-colors duration-500 bg-zinc-800 p-8 border border-zinc-700" id="mini-demo-shirt">
+<div class="relative">
+<img alt="3D Model Base" class="w-64 mix-blend-multiply opacity-80" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC-Sww4LI1lsUKTeye-fYH2CuEZ_lRjqmM828pgq_fdnbJiFG93xKpt0LTKRUM-l3clFrtpt0f0I6EQw1CdIme2f5I2DTl3L5IX3spLqQZmssxabtSjYs4OAhBmrlhMTgKveFkSmSLyQM6cxTW4CxEcQwqSLgU2nTs-SEDnuwpyD8ybVtMCZsm2SR8TuXjjohP9yqWsjWB4tP8yTTESZ0ERclc_Zz47ZCy5GsutxNi6s1Te_qS4BjOikQ2KMju-3xLXFwPOv6XVWuw"/>
+<div class="absolute inset-0 flex items-center justify-center pointer-events-none text-white font-headline-md text-3xl uppercase tracking-widest break-words text-center px-4" id="demo-preview-text">YOUR VIBE</div>
+</div>
+</div>
+<div class="mt-6 space-y-4">
+<input class="w-full bg-background border-2 border-outline p-3 font-label-mono focus:border-primary outline-none" id="demo-input" placeholder="TYPE YOUR SLOGAN..." type="text"/>
+<div class="flex gap-4">
+<div class="demo-swatch w-10 h-10 bg-zinc-800 border-2 border-white cursor-pointer" data-color="#18181b"></div>
+<div class="demo-swatch w-10 h-10 bg-red-900 border-2 border-transparent cursor-pointer" data-color="#450a0a"></div>
+<div class="demo-swatch w-10 h-10 bg-indigo-900 border-2 border-transparent cursor-pointer" data-color="#1e1b4b"></div>
+<div class="demo-swatch w-10 h-10 bg-green-900 border-2 border-transparent cursor-pointer" data-color="#064e3b"></div>
+</div>
+</div>
+</div>
+</div>
+<div class="space-y-8 reveal">
+<h2 class="font-display-lg text-display-lg-mobile md:text-5xl uppercase leading-none">REAL-TIME 3D<br/>STREETWEAR STUDIO</h2>
+<div class="flex flex-wrap gap-4">
+<span class="bg-primary text-on-primary font-label-mono-bold px-4 py-2 border border-black shadow-[4px_4px_0px_0px_black] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-pointer">UPLOAD ART</span>
+<span class="bg-tertiary text-on-tertiary font-label-mono-bold px-4 py-2 border border-black shadow-[4px_4px_0px_0px_black] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-pointer">PICK COLORS</span>
+<span class="bg-secondary text-on-secondary font-label-mono-bold px-4 py-2 border border-black shadow-[4px_4px_0px_0px_black] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-pointer">PREVIEW 3D</span>
+<span class="bg-on-background text-background font-label-mono-bold px-4 py-2 border border-black shadow-[4px_4px_0px_0px_black] hover:translate-x-1 hover:translate-y-1 hover:shadow-none transition-all cursor-pointer">AUTO-EXPORT</span>
+</div>
+<div class="pt-8 flex items-center gap-6 group">
+<button class="magnetic-btn bg-tertiary text-on-tertiary font-headline-md text-3xl px-10 py-5 shadow-[6px_6px_0px_0px_white] active:translate-x-1 active:translate-y-1 active:shadow-none transition-all">
+                            OPEN THE CREATOR
+                        </button>
+<span class="material-symbols-outlined text-tertiary text-6xl group-hover:translate-x-4 transition-transform" data-icon="east">east</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Categories Scroll -->
+<section class="py-stack-lg border-y-2 border-outline-variant overflow-hidden reveal">
+<div class="px-margin-mobile md:px-margin-desktop mb-8">
+<h3 class="font-label-mono-bold text-outline uppercase tracking-[0.2em]">BY CATEGORY</h3>
+</div>
+<div class="flex gap-4 overflow-x-auto px-margin-mobile md:px-margin-desktop no-scrollbar pb-4">
+<a class="shrink-0 font-display-xl text-6xl md:text-8xl hover:text-tertiary transition-colors border-2 border-outline-variant px-8 py-4 hover:border-tertiary italic hover:scale-105 transform duration-300" href="#">#APPAREL</a>
+<a class="shrink-0 font-display-xl text-6xl md:text-8xl hover:text-primary transition-colors border-2 border-outline-variant px-8 py-4 hover:border-primary italic hover:scale-105 transform duration-300" href="#">#DRINKWARE</a>
+<a class="shrink-0 font-display-xl text-6xl md:text-8xl hover:text-secondary transition-colors border-2 border-outline-variant px-8 py-4 hover:border-secondary italic hover:scale-105 transform duration-300" href="#">#PRINTS</a>
+<a class="shrink-0 font-display-xl text-6xl md:text-8xl hover:text-tertiary transition-colors border-2 border-outline-variant px-8 py-4 hover:border-tertiary italic hover:scale-105 transform duration-300" href="#">#LIFESTYLE</a>
+<a class="shrink-0 font-display-xl text-6xl md:text-8xl hover:text-primary transition-colors border-2 border-outline-variant px-8 py-4 hover:border-primary italic hover:scale-105 transform duration-300" href="#">#TECH</a>
+</div>
+</section>
+<!-- Community Grid -->
+<section class="px-margin-mobile md:px-margin-desktop py-stack-lg">
+<div class="flex flex-col md:flex-row justify-between items-end mb-12">
+<h2 class="font-display-lg text-display-lg-mobile md:text-display-lg italic leading-tight reveal reveal-flip">THE CULTURE<br/>IS WEARING IT</h2>
+<a class="font-label-mono text-primary underline underline-offset-8 decoration-2 hover:text-tertiary reveal" href="#">@PRINTARIA_LABS</a>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="aspect-square bg-surface-container overflow-hidden border border-outline-variant hover:scale-[1.02] transition-transform reveal hover:rotate-1">
+<img alt="UGC 1" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHb_AfD7E1qQMQ0VDC3RAarVfAShG0Mx5oxKs_UVMLPBazkbRHgJ7lcLmxoJlovVsJ7vt2IDdM4DtzbwgpUqXIIBB4hrvpt27TThK7K61W5sa7sbQKwIC7CcI1_-5GruD_rcy6Z94U58wIBLoE7SqTIn1dDOD7-w_sst7EtdL7b4XGzXZHh44gVrtbvKolaMQ3kSa4ZnTCcYsv9cEeR3t90pL_MAzI9T2pyE73GtEbYMPCNgcgwBUnYMWlWGN80mDFJe9Y9AoBiAI"/>
+</div>
+<div class="aspect-square bg-surface-container overflow-hidden border border-outline-variant hover:scale-[1.02] transition-transform reveal delay-100 hover:-rotate-1">
+<img alt="UGC 2" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBm5i5GVerZI4LoGPfKV6MshM5MyaiFARfmWeVA9cvw7ZND5MqL8oNUE24Wv_QlEbHpfgeuZ7NNpOfP9wUA1mtoyPhoWWQ6gkfBoYXuBYvEmZdx6eY-net6Abqq395GaweIwDg_vgKwjDFdcyL-OzzgiLBKteTjX2uMCH9j3f5SoIvlwlgzxlhxWkfuL0kd59yZUmbaNnhl6hqgsX9zuIR5oKOcVRyaVsLCk9RqVcInz3lzUwRodiSYbU75_n-zX0fOxLQpne2ut1A"/>
+</div>
+<div class="aspect-square bg-surface-container overflow-hidden border border-outline-variant hover:scale-[1.02] transition-transform reveal delay-200 hover:rotate-1">
+<img alt="UGC 3" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBRI6D1DuvSMNksRa01g2JRSvXgB592aPtFNbY5Sx1jOoMCstFNydr2qHK2tyBmD6ntHMaFxs4yncX1gINWqKjORSITJ-CbNgv59-4wNkVQ6kwsctJi0Kw1z9MycrIJLjIrSN9-9lDmYzSMsAgFB0g0zn_dgmBxZTReFqDvqjngQh8CBKOi9qQCNi70M_hGceCPs7QkqidwskqFLR-dnUUwqSjrYloZzGxXoKs6jRizhmpnFkgGc3RAY6ScqEad7FSAR-IRPRoZIMQ"/>
+</div>
+<div class="aspect-square bg-surface-container overflow-hidden border border-outline-variant hover:scale-[1.02] transition-transform reveal delay-300 hover:-rotate-1">
+<img alt="UGC 4" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" loading="lazy" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCnrOAqTjWcS1WgGdD3i6YDX1z-LIKFulomTYfGFEJxT-HLWhck4xbmFLJT_C5_KmgC2w7Hyn4-0RshzHTLY8JTYQveWi4_P3rqx0BTUuREESrPxFU1OlpMvgapSVRQSvybPvpiKBOMDE9EfyvbxKtrOyMihBxiZCV7ovlK0_LCp_XVllNTt1eRCLjX0mRx78hrfBlhE8oa9LQ469OQEZVAGUfSqVU33rew8TCa1qku9D2sC7Sw6TLVGxmUVdFLIqO0v7hMB58CzfE"/>
+</div>
+</div>
+</section>
+</main>
+<!-- Bottom Navigation Bar (Mobile) -->
+<div class="lg:hidden fixed bottom-0 left-0 right-0 bg-surface border-t-2 border-tertiary z-[90] flex justify-around items-center py-4 px-4 backdrop-blur-md">
+<button class="material-symbols-outlined text-primary text-3xl" data-icon="home">home</button>
+<button class="material-symbols-outlined text-on-surface text-3xl" data-icon="search">search</button>
+<button class="bg-tertiary text-on-tertiary p-3 rounded-full shadow-lg -translate-y-6 border-4 border-background material-symbols-outlined text-3xl" data-icon="add">add</button>
+<button class="material-symbols-outlined text-on-surface text-3xl" data-icon="favorite">favorite</button>
+<button class="material-symbols-outlined text-on-surface text-3xl" data-icon="shopping_cart">shopping_cart</button>
+</div>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t-2 border-outline-variant grid grid-cols-1 md:grid-cols-12 gap-gutter px-margin-mobile md:px-margin-desktop py-stack-lg relative overflow-hidden reveal">
+<div class="md:col-span-12 mb-12">
+<div class="font-display-lg text-display-lg-mobile md:text-display-xl text-on-surface-variant opacity-10 uppercase leading-none tracking-tighter hover:opacity-100 transition-opacity duration-1000 glitch-text cursor-default">PRINTARIA LABS</div>
+</div>
+<div class="md:col-span-4">
+<h4 class="font-headline-md text-2xl text-primary mb-6 uppercase">The Mission</h4>
+<p class="font-body-md text-on-surface-variant mb-8 max-w-sm">We provide the tools for the next generation of streetwear icons. Unapologetically custom, built for the underground.</p>
+<div class="flex gap-4">
+<button class="material-symbols-outlined text-3xl hover:text-tertiary transition-colors" data-icon="volume_off" id="vibe-mode">volume_off</button>
+<a class="material-symbols-outlined text-3xl hover:text-tertiary transition-colors" data-icon="share" href="#">share</a>
+<a class="material-symbols-outlined text-3xl hover:text-tertiary transition-colors" data-icon="public" href="#">public</a>
+</div>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-mono-bold text-on-surface mb-6 uppercase">SHOP</h4>
+<ul class="flex flex-col gap-4 font-label-mono text-on-surface-variant">
+<li><a class="hover:text-tertiary transition-colors" href="#">All Products</a></li>
+<li><a class="hover:text-tertiary transition-colors" href="#">Latest Drops</a></li>
+<li><a class="hover:text-tertiary transition-colors" href="#">Best Sellers</a></li>
+<li><a class="hover:text-tertiary transition-colors" href="#">Studio Tool</a></li>
+</ul>
+</div>
+<div class="md:col-span-2">
+<h4 class="font-label-mono-bold text-on-surface mb-6 uppercase">SUPPORT</h4>
+<ul class="flex flex-col gap-4 font-label-mono text-on-surface-variant">
+<li><a class="hover:text-tertiary transition-colors" href="#">Shipping</a></li>
+<li><a class="hover:text-tertiary transition-colors" href="#">Sizing Guide</a></li>
+<li><a class="hover:text-tertiary transition-colors" href="#">Contact</a></li>
+<li><a class="hover:text-tertiary transition-colors" href="#">FAQ</a></li>
+</ul>
+</div>
+<div class="md:col-span-4">
+<h4 class="font-label-mono-bold text-on-surface mb-6 uppercase">NEWSLETTER</h4>
+<div class="relative group">
+<input class="w-full bg-transparent border-b-2 border-white py-4 font-label-mono text-on-surface focus:outline-none focus:border-tertiary placeholder:text-outline-variant" placeholder="ENTER EMAIL" type="email"/>
+<button class="absolute right-0 bottom-4 font-label-mono-bold text-tertiary hover:translate-x-2 transition-transform">SUBMIT</button>
+</div>
+</div>
+</footer>
+<script>
+        // Custom Cursor Logic
+        const cursor = document.getElementById('custom-cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        document.querySelectorAll('a, button, .magnetic-btn, .color-dot, .demo-swatch').forEach(el => {
+            el.addEventListener('mouseenter', () => cursor.style.transform = 'translate(-50%, -50%) scale(1.5)');
+            el.addEventListener('mouseleave', () => cursor.style.transform = 'translate(-50%, -50%) scale(1)');
+        });
+
+        document.querySelectorAll('.product-card').forEach(card => {
+            card.addEventListener('mouseenter', () => cursor.classList.add('active'));
+            card.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+        });
+
+        // Cinematic Entrance Sequence
+        window.addEventListener('DOMContentLoaded', () => {
+            const loaderTypewriter = document.getElementById('loader-typewriter');
+            const text = "PRINTARIA";
+            let i = 0;
+            const type = () => {
+                if (i < text.length) {
+                    loaderTypewriter.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, 100);
+                } else {
+                    setTimeout(() => {
+                        document.getElementById('loading-screen').classList.add('loaded');
+                        setTimeout(() => {
+                            document.getElementById('loading-screen').style.display = 'none';
+                            startEntrance();
+                        }, 800);
+                    }, 500);
+                }
+            };
+            type();
+        });
+
+        function startEntrance() {
+            const mainNav = document.getElementById('main-nav');
+            const contentWrap = document.getElementById('content-wrap');
+            const heroTitleSpans = document.querySelectorAll('#hero-title span');
+
+            contentWrap.classList.remove('opacity-0');
+            mainNav.classList.remove('-translate-y-full', 'opacity-0');
+
+            setTimeout(() => {
+                heroTitleSpans[0].style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                heroTitleSpans[0].classList.remove('translate-y-full', 'opacity-0');
+            }, 300);
+
+            setTimeout(() => {
+                heroTitleSpans[1].style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                heroTitleSpans[1].classList.remove('scale-0', 'opacity-0');
+            }, 600);
+
+            setTimeout(() => {
+                heroTitleSpans[2].style.transition = 'all 0.8s cubic-bezier(0.175, 0.885, 0.32, 1.275)';
+                heroTitleSpans[2].classList.remove('translate-y-full', 'opacity-0');
+            }, 900);
+        }
+
+        // Intersection Observer for Reveals
+        const observerOptions = { threshold: 0.1 };
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+        // Parallax Effect
+        document.addEventListener('mousemove', (e) => {
+            const amount = 20;
+            const x = (e.clientX - window.innerWidth / 2) / amount;
+            const y = (e.clientY - window.innerHeight / 2) / amount;
+            document.querySelectorAll('.parallax-layer').forEach(layer => {
+                const speed = layer.getAttribute('data-speed') || 1;
+                layer.style.transform = `translate(${x * speed}px, ${y * speed}px)`;
+            });
+        });
+
+        // Magnetic Buttons
+        const magneticBtns = document.querySelectorAll('.magnetic-btn');
+        magneticBtns.forEach(btn => {
+            btn.addEventListener('mousemove', (e) => {
+                const rect = btn.getBoundingClientRect();
+                const x = e.clientX - rect.left - rect.width / 2;
+                const y = e.clientY - rect.top - rect.height / 2;
+                btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = `translate(0px, 0px)`;
+            });
+        });
+
+        // Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progress-bar').style.width = scrolled + "%";
+        });
+
+        // Live Product Customizer Demo
+        const demoInput = document.getElementById('demo-input');
+        const demoPreviewText = document.getElementById('demo-preview-text');
+        const demoShirt = document.getElementById('mini-demo-shirt');
+        const demoSwatches = document.querySelectorAll('.demo-swatch');
+
+        demoInput.addEventListener('input', (e) => {
+            demoPreviewText.innerText = e.target.value || "YOUR VIBE";
+        });
+
+        demoSwatches.forEach(swatch => {
+            swatch.addEventListener('click', () => {
+                const color = swatch.getAttribute('data-color');
+                demoShirt.style.backgroundColor = color;
+                demoSwatches.forEach(s => s.style.borderColor = 'transparent');
+                swatch.style.borderColor = 'white';
+            });
+        });
+
+        // Color Variant Cross-fade
+        document.querySelectorAll('.color-dot').forEach(dot => {
+            dot.addEventListener('click', function() {
+                const newSrc = this.getAttribute('data-img');
+                const img = this.closest('.product-card').querySelector('.product-img');
+                img.style.opacity = '0';
+                setTimeout(() => {
+                    img.src = newSrc;
+                    img.style.opacity = '1';
+                }, 300);
+            });
+        });
+
+        // Theme Toggle
+        const themeToggle = document.getElementById('theme-toggle');
+        themeToggle.addEventListener('click', () => {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            themeToggle.innerText = isDark ? 'dark_mode' : 'light_mode';
+        });
+
+        // Vibe Mode (Simple haptic/visual sound toggle placeholder)
+        const vibeMode = document.getElementById('vibe-mode');
+        let soundActive = false;
+        vibeMode.addEventListener('click', () => {
+            soundActive = !soundActive;
+            vibeMode.innerText = soundActive ? 'volume_up' : 'volume_off';
+            if(soundActive) {
+                document.body.classList.add('animate-pulse');
+                setTimeout(() => document.body.classList.remove('animate-pulse'), 1000);
+            }
+        });
+
+    </script>
+</body></html>
